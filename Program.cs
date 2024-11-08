@@ -12,7 +12,7 @@ namespace DiscoProcs
         static void Main(string[] args)
         {
             // Window title declared here for visibility
-            string windowTitle = "DailyJournal - save your work notes";
+            string windowTitle = "DiscoProcs - Examine Running Processes";
 
             // Creating a new PhotinoWindow instance with the fluent API
             var window = new PhotinoWindow()
