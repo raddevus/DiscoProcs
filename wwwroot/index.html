@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photino for .NET Demo</title>
     <link rel="stylesheet" href="css/main.css" />
+    <script src="js/messageHandler.js"></script>
 </head>
 <body>
     <h1 class="text-center">Hello to Photino for .NET</h1>
@@ -15,17 +16,6 @@
         Click on the button below to send a message to the backend. 
         It will respond and send a message back to the UI.
     </p>
-    <button class="primary center" onclick="callDotNet()">Call .NET</button>
-
-    <script src="app://dynamic.js"></script>
-
-    <script>
-        function callDotNet() {
-            
-            window.external.sendMessage('{"Command":"SendMsg","Parameters":["Hi .NET! 🤖"]}');
-        }
-
-        window.external.receiveMessage(message => alert(message));
-    </script>
+    <button class="primary center" onclick="sendTestMsg()">Test Message Send</button>
 </body>
 </html>
