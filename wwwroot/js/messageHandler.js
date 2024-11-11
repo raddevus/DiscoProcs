@@ -7,7 +7,7 @@ function sendMessage(sMessage){
 }
 
 // allCommands is the list of all commands (strings) processed by the switch statement
-var allCommands = ["getCurrentDirectory","testMsg","getDirSeparator","getUserProfile"];
+var allCommands = ["getCurrentDirectory","testMsg","getDirSeparator","getUserProfile", "getAllProcNames"];
 
 function sendTestMsg(){  
     let message = {}; // create basic object
@@ -32,6 +32,14 @@ function sendTestMsg(){
     sendMessage(sMessage);
   }
 
+  function getAllProcNames(){
+    let message = {}; // create basic object
+    message.Command = "getAllProcNames";
+    message.Parameters = "null";
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
 function initMessageHandler(){
     window.external.receiveMessage(response => {
       response = JSON.parse(response);
@@ -45,10 +53,22 @@ function initMessageHandler(){
             break;
         }
         case allCommands[2]:{
-          
+
             dirSeparator = `${response.Parameters}`;
             alert(`dirSeparator ${dirSeparator}`);
             break;
+        }
+        case allCommands[4]:{
+          var allProcs = response.Parameters.split(",");
+          allProcs.forEach (p => {
+            var pDetails = p.split(":");
+
+            var localOption = new Option(`${pDetails[0]}               ${pDetails[1]}`, pDetails[0], false, true);
+		        document.querySelector('#procList').append(localOption);
+		        //$("#procNames").val("");
+          });
+          
+          break;
         }
         default:{
             alert(response.Parameters);

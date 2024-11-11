@@ -34,6 +34,12 @@ public class MainMessageHandler{
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
+            case "getAllProcNames":{
+                DpProcess dpp = new();
+                wm.Parameters = string.Join(",",dpp.GetAllProcNames());
+                window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"

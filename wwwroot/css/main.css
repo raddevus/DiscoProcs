@@ -3,6 +3,12 @@ html, body {
     padding: 0;
 }
 
+#procList option{
+    padding-right:20px;
+    background-color: lightblue;
+   
+ }
+
 body {
     padding: 2em;
     color: #111;
