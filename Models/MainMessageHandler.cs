@@ -17,11 +17,6 @@ public class MainMessageHandler{
         }
         
         switch(wm.Command){
-            case "createYMDir":{
-                var currentDir = Environment.CurrentDirectory;
-                Directory.CreateDirectory(Path.Combine(currentDir,DateTime.Now.ToString("yyyy-MM")));
-                break;
-            }
             case "getCurrentDirectory":{
                 wm.Parameters = Environment.CurrentDirectory;
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
@@ -37,36 +32,6 @@ public class MainMessageHandler{
             case "getUserProfile":{
                 wm.Parameters = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
-                break;
-            }
-            case "loadEntryData":{
-                
-                // var localEntry = new Entry(wm.Parameters, String.Empty);
-                // var entryData = localEntry.Read();
-                // Console.WriteLine(entryData);
-                // wm.Parameters = entryData;
-                // window?.SendWebMessage(JsonSerializer.Serialize(wm));
-                break;
-            }
-            case "loadMonthlyEntries":{
-                // var localEntry = new Entry(wm.Parameters, String.Empty);
-                // var monthPath = Path.Combine(Environment.CurrentDirectory,localEntry.EntryFolder);
-                // // If there is no month folder YYYY-MM because an entry has never
-                // // been created for this month, then there are no monthly files to load
-                // // so we don't do anything.
-                // if (Directory.Exists(monthPath)){
-                //     String [] allFiles = Directory.GetFiles(monthPath);
-                //     String filesDelimited = String.Join(",",allFiles.Select(item => item ));
-                //     wm.AllParameters = allFiles;
-                //     wm.Parameters = filesDelimited;
-                //     window?.SendWebMessage(JsonSerializer.Serialize(wm));
-                // }
-                break;
-            }
-            case "saveEntryData":{
-                // var entry = new Entry( wm.AllParameters[0], wm.AllParameters[1]);
-                // entry.Save();
-                // window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
             default :{

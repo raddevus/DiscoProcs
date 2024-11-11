@@ -7,11 +7,10 @@ function sendMessage(sMessage){
 }
 
 // allCommands is the list of all commands (strings) processed by the switch statement
-var allCommands = ["getCurrentDirectory","testMsg"];
+var allCommands = ["getCurrentDirectory","testMsg","getDirSeparator","getUserProfile"];
 
 function sendTestMsg(){  
     let message = {}; // create basic object
-    //message.Command = "getCurrentDirectory";
     message.Command = "testMsg";
     // // Create all parameters as array
     
@@ -19,6 +18,7 @@ function sendTestMsg(){
     allParameters.push(today.yyyymmdd());
     // // Call join on array to pass all parameters as a comma-delimited string
     message.Parameters = allParameters.join();
+    console.log(`message.Parameters : ${message.Parameters}`);
     
     let sMessage = JSON.stringify(message);
     sendMessage(sMessage);
@@ -39,22 +39,21 @@ function initMessageHandler(){
         case allCommands[0]:{
           alert(`current directory is: ${response.Parameters}`);
           break;
-        }  
-        case "getDirSeparator":{
-          
-          dirSeparator = `${response.Parameters}`;
-          
-          break;
         }
         case allCommands[1]:{
             alert(`I got you! ${response.Parameters}`);
             break;
         }
-        
-          default:{
-              alert(response.Parameters);
-              break;
-          }
+        case allCommands[2]:{
+          
+            dirSeparator = `${response.Parameters}`;
+            alert(`dirSeparator ${dirSeparator}`);
+            break;
+        }
+        default:{
+            alert(response.Parameters);
+            break;
+        }
       }
     });
   }
