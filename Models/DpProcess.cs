@@ -15,4 +15,18 @@ public class DpProcess{
         sl.Sort();
         return sl;
     }
+
+    public List<string> GetAllProcModules(string targetProcName){
+        // Get all the modules that a specific process loads
+        Process [] allProcs = Process.GetProcesses();
+        foreach (Process p in allProcs){
+            if (p.ProcessName == targetProcName){
+                ProcessModuleCollection allModules = p.Modules;
+                foreach (ProcessModule pm in allModules){
+                    Console.WriteLine(pm.ModuleName);
+                }
+            }
+        }
+        return new List<string>();
+    }
 }

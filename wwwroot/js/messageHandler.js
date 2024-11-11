@@ -1,13 +1,18 @@
 let today = new Date();
 initMessageHandler();
 
+let selector = document.querySelector("#procList");
+ selector.addEventListener("click", () => {
+   getProcessModules();
+ });
+
 function sendMessage(sMessage){
     console.log(sMessage);
     window.external.sendMessage(sMessage);
 }
 
 // allCommands is the list of all commands (strings) processed by the switch statement
-var allCommands = ["getCurrentDirectory","testMsg","getDirSeparator","getUserProfile", "getAllProcNames"];
+var allCommands = ["getCurrentDirectory","testMsg","getDirSeparator","getUserProfile", "getAllProcNames","getProcessModules"];
 
 function sendTestMsg(){  
     let message = {}; // create basic object
@@ -40,6 +45,14 @@ function sendTestMsg(){
     sendMessage(sMessage);
   }
 
+  function getProcessModules(){
+    let message = {}; // create basic object
+    message.Command = "getProcessModules";
+    message.Parameters = document.querySelector("#procList").value;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
 function initMessageHandler(){
     window.external.receiveMessage(response => {
       response = JSON.parse(response);
@@ -59,6 +72,19 @@ function initMessageHandler(){
             break;
         }
         case allCommands[4]:{
+          var allProcs = response.Parameters.split(",");
+          allProcs.forEach (p => {
+            var pDetails = p.split(":");
+
+            var localOption = new Option(`${pDetails[0]}               ${pDetails[1]}`, pDetails[0], false, true);
+		        document.querySelector('#procList').append(localOption);
+		        //$("#procNames").val("");
+          });
+          
+          break;
+        }
+        case allCommands[5]:{
+          return;
           var allProcs = response.Parameters.split(",");
           allProcs.forEach (p => {
             var pDetails = p.split(":");
