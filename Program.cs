@@ -24,6 +24,7 @@ namespace DiscoProcs
                 .Center()
                 // Users can resize windows by default.
                 .SetResizable(true)
+                
                 .SetDevToolsEnabled(true) // Allows you to open console (right-click page to open)
                 // Most event handlers can be registered after the
                 // PhotinoWindow was instantiated by calling a registration 
@@ -32,6 +33,7 @@ namespace DiscoProcs
                 .RegisterWebMessageReceivedHandler(MainMessageHandler.MessageHandler)
                 .Load("wwwroot/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
 
+            
             window.WaitForClose(); // Starts the application event loop
         }
     }

@@ -3,7 +3,7 @@ initMessageHandler();
 
 let selector = document.querySelector("#procList");
  selector.addEventListener("click", () => {
-   getProcessModules();
+   getProcFileName();
  });
 
 function sendMessage(sMessage){
@@ -12,7 +12,7 @@ function sendMessage(sMessage){
 }
 
 // allCommands is the list of all commands (strings) processed by the switch statement
-var allCommands = ["getCurrentDirectory","testMsg","getDirSeparator","getUserProfile", "getAllProcNames","getProcessModules"];
+var allCommands = ["getCurrentDirectory","testMsg","getDirSeparator","getUserProfile", "getAllProcNames","getProcessModules","getProcFileName"];
 
 function sendTestMsg(){  
     let message = {}; // create basic object
@@ -38,6 +38,7 @@ function sendTestMsg(){
   }
 
   function getAllProcNames(){
+    document.querySelector("#procList").options.length = 0;
     let message = {}; // create basic object
     message.Command = "getAllProcNames";
     message.Parameters = "null";
@@ -49,6 +50,15 @@ function sendTestMsg(){
     let message = {}; // create basic object
     message.Command = "getProcessModules";
     message.Parameters = document.querySelector("#procList").value;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
+  function getProcFileName(){
+    let message = {}; // create basic object
+    message.Command = "getProcFileName";
+    message.Parameters = document.querySelector("#procList").value;
+    alert(`id: ${message.Parameters}`);
     let sMessage = JSON.stringify(message);
     sendMessage(sMessage);
   }
@@ -76,7 +86,7 @@ function initMessageHandler(){
           allProcs.forEach (p => {
             var pDetails = p.split(":");
 
-            var localOption = new Option(`${pDetails[0]}               ${pDetails[1]}`, pDetails[0], false, true);
+            var localOption = new Option(`${pDetails[0]}${pDetails[1]}`, pDetails[1], false, true);
 		        document.querySelector('#procList').append(localOption);
 		        //$("#procNames").val("");
           });
@@ -93,6 +103,12 @@ function initMessageHandler(){
 		        document.querySelector('#procList').append(localOption);
 		        //$("#procNames").val("");
           });
+          
+          break;
+        }
+        case allCommands[6]:{
+          var windowTitle = `${response.Parameters}`;
+          alert(`Window title : ${windowTitle}`);
           
           break;
         }

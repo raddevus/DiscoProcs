@@ -29,4 +29,24 @@ public class DpProcess{
         }
         return new List<string>();
     }
+
+    public string GetProcFileName(int procId){
+        
+        Process [] allProcs = Process.GetProcesses();
+        foreach (Process p in allProcs){
+            if (p.Id == procId){
+                Console.WriteLine("### GOT THE PROC #####!");
+                try{
+                Console.WriteLine($"{p.MainModule.FileName}");
+                return p.MainModule.FileName;
+                //return p.PrivateMemorySize.ToString("N0");
+                }
+                catch (Exception ex){
+                    Console.WriteLine($"Failed: {ex.Message}");
+                    return string.Empty;
+                }
+            }
+        }
+        return "Couldn't get title";
+    }
 }
