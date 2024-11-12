@@ -35,6 +35,7 @@ public class DpProcess{
         Process [] allProcs = Process.GetProcesses();
         foreach (Process p in allProcs){
             if (p.Id == procId){
+                DisplayMainWindowTitle(procId);
                 Console.WriteLine("### GOT THE PROC #####!");
                 try{
                 Console.WriteLine($"{p.MainModule.FileName}");
@@ -48,5 +49,23 @@ public class DpProcess{
             }
         }
         return "Couldn't get title";
+    }
+
+    private void DisplayMainWindowTitle(int procId){
+        Process [] allProcs = Process.GetProcesses();
+        foreach (Process p in allProcs){
+            if (p.Id == procId){
+                Console.WriteLine("### GOT THE PROC #####!");
+                try{
+                    p.Refresh();
+                    Console.WriteLine($"handle- {p.MainWindowHandle} : title- {p.MainWindowTitle} : handleCount - {p.HandleCount}");
+                    Console.WriteLine($"{p.StartTime}");
+                
+                }
+                catch (Exception ex){
+                    Console.WriteLine($"Failed: {ex.Message}");
+                }
+            }
+        }
     }
 }
