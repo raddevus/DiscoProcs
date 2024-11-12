@@ -107,8 +107,8 @@ function initMessageHandler(){
           break;
         }
         case allCommands[6]:{
-          var windowTitle = `${response.Parameters}`;
-          alert(`Window title : ${windowTitle}`);
+          var procFileName = `${response.Parameters}`;
+          alert(`filename : ${procFileName}`);
           
           break;
         }

@@ -23,7 +23,7 @@ namespace DiscoProcs
                 // Center window in the middle of the screen
                 .Center()
                 // Users can resize windows by default.
-                .SetResizable(true)
+                .SetResizable(false)
                 
                 .SetDevToolsEnabled(true) // Allows you to open console (right-click page to open)
                 // Most event handlers can be registered after the
