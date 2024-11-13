@@ -18,5 +18,10 @@
   <ItemGroup>
     <PackageReference Include="Photino.NET" Version="2.6.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NlSysInfo">
+      <HintPath>.\External\NlSysInfo.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

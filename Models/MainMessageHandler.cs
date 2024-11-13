@@ -1,5 +1,6 @@
 using PhotinoNET;
 using System.Text.Json;
+using NlSysInfo;
 
 public class MainMessageHandler{
     static public void MessageHandler(object? sender, string message) 
@@ -35,19 +36,19 @@ public class MainMessageHandler{
                 break;
             }
             case "getAllProcNames":{
-                DpProcess dpp = new();
+                SystemInfo dpp = new();
                 wm.Parameters = string.Join(",",dpp.GetAllProcNames());
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
             case "getProcessModules":{
-                DpProcess dpp = new();
+                SystemInfo dpp = new();
                 wm.Parameters = string.Join(",",dpp.GetAllProcModules(wm.Parameters));
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
             case "getProcFileName":{
-                DpProcess dpp = new();
+                SystemInfo dpp = new();
                 wm.Parameters = dpp.GetProcFileName(Convert.ToInt32(wm.Parameters));
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
