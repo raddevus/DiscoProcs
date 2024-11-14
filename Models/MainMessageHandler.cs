@@ -1,6 +1,6 @@
 using PhotinoNET;
 using System.Text.Json;
-using NlSysInfo;
+using NewLibre;
 
 public class MainMessageHandler{
     static public void MessageHandler(object? sender, string message) 
