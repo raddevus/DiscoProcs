@@ -1,6 +1,8 @@
 using PhotinoNET;
 using System.Text.Json;
 using NewLibre;
+using DiscoProcs;
+using System.Reflection.Metadata.Ecma335;
 
 public class MainMessageHandler{
     static public void MessageHandler(object? sender, string message) 
@@ -36,8 +38,10 @@ public class MainMessageHandler{
                 break;
             }
             case "getAllProcNames":{
+                Program.allProcs = null;
                 SystemInfo dpp = new();
-                wm.Parameters = string.Join(",",dpp.GetAllProcNames());
+                Program.allProcs = dpp.GetAllProcesses();
+                wm.Parameters = string.Join(",",Program.allProcs.Select(p => {return $"{p.Name}:{p.ProcId}"; }));
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }

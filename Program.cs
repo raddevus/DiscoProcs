@@ -1,4 +1,5 @@
-﻿using PhotinoNET;
+﻿using NewLibre;
+using PhotinoNET;
 using System;
 using System.Drawing;
 using System.IO;
@@ -8,6 +9,7 @@ namespace DiscoProcs
 {
     class Program
     {
+        public static List<ProcInfo> allProcs = new ();
         [STAThread]
         static void Main(string[] args)
         {
