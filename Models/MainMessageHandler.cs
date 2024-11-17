@@ -49,7 +49,9 @@ public class MainMessageHandler{
             }
             case "getProcFileName":{
                 SystemInfo dpp = new();
-                wm.Parameters = dpp.GetProcFileName(Convert.ToInt32(wm.Parameters));
+                List<ProcInfo> allProcs = dpp.GetAllProcesses();
+                var pinfo = allProcs.First(p => p.ProcId == Convert.ToInt32(wm.Parameters));
+                wm.Parameters = pinfo.FileName;
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
