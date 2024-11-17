@@ -52,9 +52,11 @@ public class MainMessageHandler{
                 break;
             }
             case "getProcFileName":{
-                SystemInfo dpp = new();
-                List<ProcInfo> allProcs = dpp.GetAllProcesses();
-                var pinfo = allProcs.First(p => p.ProcId == Convert.ToInt32(wm.Parameters));
+                if (Program.allProcs.Count <= 0){
+                    SystemInfo dpp = new();
+                    Program.allProcs = dpp.GetAllProcesses();
+                }
+                var pinfo = Program.allProcs.First(p => p.ProcId == Convert.ToInt32(wm.Parameters));
                 wm.Parameters = pinfo.FileName;
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
