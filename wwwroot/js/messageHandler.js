@@ -83,6 +83,7 @@ function initMessageHandler(){
         }
         case allCommands[4]:{
           var allProcs = response.Parameters.split(",");
+          document.querySelector("#ProcCount").innerHTML = `Found ${allProcs.length} processes.`;
           allProcs.forEach (p => {
             var pDetails = p.split(":");
 
