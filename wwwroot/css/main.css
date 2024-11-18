@@ -6,7 +6,10 @@ html, body {
 #procList option{
     padding-right:20px;
     background-color: lightblue;
-   
+ }
+
+ select {
+    font-size:x-large;
  }
 
 body {
