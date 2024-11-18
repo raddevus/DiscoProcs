@@ -86,8 +86,8 @@ function initMessageHandler(){
           document.querySelector("#ProcCount").innerHTML = `Found ${allProcs.length} processes.`;
           allProcs.forEach (p => {
             var pDetails = p.split(":");
-
-            var localOption = new Option(`${pDetails[0]}${pDetails[1]}`, pDetails[1], false, true);
+            var procName = `${pDetails[0]}` != "" ? `${pDetails[0]}`: `${pDetails[1]}`
+            var localOption = new Option(procName, pDetails[1], false, true);
 		        document.querySelector('#procList').append(localOption);
 		        //$("#procNames").val("");
           });
