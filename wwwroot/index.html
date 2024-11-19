@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photino for .NET Demo</title>
+    <link rel="stylesheet" href="bootstrap533/css/bootstrap.css"/>
     <link rel="stylesheet" href="css/main.css" />
-    
+    <script src="bootstrap533/js/bootstrap.bundle.js"></script>
 </head>
 <body>
     <h1 class="text-center">DiscoProc - Discover Running Processes</h1>
@@ -14,9 +15,9 @@
     <p class="text-center">
         Click the [Get All Proc Names] button to get started.
     </p>
-    <button class="primary center" onclick="sendTestMsg()">Test Message Send</button>
-    <button class="primary center" onclick="getCurrentDir()">GetCurrentDir</button>
-    <button class="primary center" onclick="getAllProcNames()">Get All Proc Names</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="sendTestMsg()">Test Message Send</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="getCurrentDir()">GetCurrentDir</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="getAllProcNames()">Get All Proc Names</button>
     <div id="ProcCount"></div>
     <select id="procList" size="10">
         <option></option>
