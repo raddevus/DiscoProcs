@@ -66,8 +66,14 @@ public class MainMessageHandler{
                     SystemInfo dpp = new();
                     Program.allProcs = dpp.GetAllProcesses();
                 }
-                var pinfo = Program.allProcs.First(p => p.ProcId == Convert.ToInt32(wm.Parameters));
-                wm.Parameters = $"{pinfo.Name},{pinfo.ProcId},{pinfo.FileName},{pinfo.FileSize},{pinfo.GenSha256Hash()}";
+                try{
+                    var pinfo = Program.allProcs.First(p => p.ProcId == Convert.ToInt32(wm.Parameters));
+                    wm.Parameters = $"{pinfo.Name},{pinfo.ProcId},{pinfo.FileName},{pinfo.FileSize},{pinfo.GenSha256Hash()}";
+                }
+                catch(Exception ex){
+                    Console.WriteLine($"Couldn't get details: ${ex.Message}");
+                    wm.Parameters = $"Couldn't access details,inaccessible,inaccessible,inaccessible,inaccessible";
+                }
                 
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
