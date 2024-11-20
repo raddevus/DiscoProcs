@@ -82,6 +82,15 @@ function sendTestMsg(){
     sendMessage(sMessage);
   }
 
+  function getSelectedProcDetails(){
+    var allSelectedProcs = document.querySelector("#procList").selectedOptions;
+    var allProcIds = Array.from(allSelectedProcs).map(({ value }) => value);
+    console.log(allProcIds.length);
+    var s = "";
+    allProcIds.forEach(id => {s+= `${id}:`});
+    alert (s);
+  }
+
 function initMessageHandler(){
     window.external.receiveMessage(response => {
       response = JSON.parse(response);
