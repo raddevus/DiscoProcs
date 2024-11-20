@@ -3,7 +3,7 @@ initMessageHandler();
 
 let selector = document.querySelector("#procList");
  selector.addEventListener("click", () => {
-   getProcFileName();
+   getProcDetails();
  });
 
 function sendMessage(sMessage){
@@ -12,7 +12,14 @@ function sendMessage(sMessage){
 }
 
 // allCommands is the list of all commands (strings) processed by the switch statement
-var allCommands = ["getCurrentDirectory","testMsg","getDirSeparator","getUserProfile", "getAllProcNames","getProcessModules","getProcFileName"];
+var allCommands = ["getCurrentDirectory",
+    "testMsg",
+    "getDirSeparator",
+    "getUserProfile", 
+    "getAllProcNames",
+    "getProcessModules",
+    "getProcFileName", 
+    "getProcDetails"];
 
 function sendTestMsg(){  
     let message = {}; // create basic object
@@ -59,6 +66,14 @@ function sendTestMsg(){
     message.Command = "getProcFileName";
     message.Parameters = document.querySelector("#procList").value;
     alert(`id: ${message.Parameters}`);
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
+  function getProcDetails(){
+    let message = {}; 
+    message.Command = "getProcDetails";
+    message.Parameters = document.querySelector("#procList").value;
     let sMessage = JSON.stringify(message);
     sendMessage(sMessage);
   }
@@ -113,12 +128,29 @@ function initMessageHandler(){
           
           break;
         }
+        case allCommands[7]:{
+          var allParams = response.Parameters.split(",");
+          allParams.forEach(p => {
+             console.log(`param: ${p}`);
+           });
+          displayProcDetails(allParams);
+          break;
+        }
         default:{
             alert(response.Parameters);
             break;
         }
       }
     });
+  }
+
+  function displayProcDetails(allParams){
+    document.querySelector("#pname").innerHTML = allParams[0];
+    document.querySelector("#pid").innerHTML = allParams[1];
+    document.querySelector("#pfile").innerHTML = allParams[2];
+    document.querySelector("#psize").innerHTML = allParams[3];
+    document.querySelector("#phash").innerHTML = allParams[4];
+    
   }
 
   Date.prototype.yyyymmdd = function(isDash=true) {

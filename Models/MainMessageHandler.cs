@@ -61,6 +61,17 @@ public class MainMessageHandler{
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
+            case "getProcDetails":{
+                if (Program.allProcs.Count <= 0){
+                    SystemInfo dpp = new();
+                    Program.allProcs = dpp.GetAllProcesses();
+                }
+                var pinfo = Program.allProcs.First(p => p.ProcId == Convert.ToInt32(wm.Parameters));
+                wm.Parameters = $"{pinfo.Name},{pinfo.ProcId},{pinfo.FileName},{pinfo.FileSize},{pinfo.GenSha256Hash()}";
+                
+                window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"
