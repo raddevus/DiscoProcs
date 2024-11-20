@@ -6,6 +6,10 @@ let selector = document.querySelector("#procList");
    getProcDetails();
  });
 
+selector.addEventListener("change", () => {
+  getProcDetails();
+});
+
 function sendMessage(sMessage){
     console.log(sMessage);
     window.external.sendMessage(sMessage);
@@ -145,11 +149,12 @@ function initMessageHandler(){
   }
 
   function displayProcDetails(allParams){
-    document.querySelector("#pname").innerHTML = allParams[0];
-    document.querySelector("#pid").innerHTML = allParams[1];
-    document.querySelector("#pfile").innerHTML = allParams[2];
-    document.querySelector("#psize").innerHTML = allParams[3];
-    document.querySelector("#phash").innerHTML = allParams[4];
+    document.querySelector("#pname").innerHTML = `<strong>Name</strong>: ${allParams[0]}`;
+    document.querySelector("#pid").innerHTML = `<strong>PID</strong>: ${allParams[1]}`;
+    document.querySelector("#pfile").innerHTML = `<strong>Exe File</strong>: ${allParams[2]}`;
+    document.querySelector("#psize").innerHTML = `<strong>Exe File Size</strong>: ${parseInt(allParams[3]).toLocaleString("en")}`;
+    document.querySelector("#pworkingset").innerHTML = `<strong>RAM</strong>: ${parseInt(allParams[4]).toLocaleString("en")} bytes used.`;
+    document.querySelector("#phash").innerHTML = `<strong>SHA256 (exe file)</strong>: ${allParams[5]}`;
     
   }
 
