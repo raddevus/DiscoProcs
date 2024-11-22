@@ -57,7 +57,7 @@ public class MainMessageHandler{
                     Program.allProcs = dpp.GetAllProcesses();
                 }
                 var pinfo = Program.allProcs.First(p => p.ProcId == Convert.ToInt32(wm.Parameters));
-                wm.Parameters = pinfo.FileName;
+                wm.Parameters = pinfo.Filename;
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
@@ -68,7 +68,7 @@ public class MainMessageHandler{
                 }
                 try{
                     var pinfo = Program.allProcs.First(p => p.ProcId == Convert.ToInt32(wm.Parameters));
-                    wm.Parameters = $"{pinfo.Name},{pinfo.ProcId},{pinfo.FileName},{pinfo.FileSize},{pinfo.GetWorkingSet()},{pinfo.GenSha256Hash()}";
+                    wm.Parameters = $"{pinfo.Name},{pinfo.ProcId},{pinfo.Filename},{pinfo.FileSize},{pinfo.GetWorkingSet()},{pinfo.GenSha256Hash()}";
                 }
                 catch(Exception ex){
                     Console.WriteLine($"Couldn't get details: ${ex.Message}");
