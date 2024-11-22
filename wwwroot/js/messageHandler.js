@@ -87,7 +87,7 @@ function sendTestMsg(){
     var allProcIds = Array.from(allSelectedProcs).map(({ value }) => value);
     console.log(allProcIds.length);
     var s = "";
-    allProcIds.forEach(id => {s+= `${id}:`});
+    allProcIds.forEach(id => {s+= `${id},`});
     alert (s);
   }
 
