@@ -8,6 +8,13 @@ html, body {
     background-color: lightblue;
  }
 
+ ul {
+    display:block;
+    flex-wrap: wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
  select {
     font-size:large;
  }
