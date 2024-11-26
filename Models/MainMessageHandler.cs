@@ -78,6 +78,36 @@ public class MainMessageHandler{
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
+            case "saveProcSnapshot":{
+                Console.WriteLine("I received saveProcSnapshot msg.");
+                SystemInfo dpp = new();
+                Program.allProcs = dpp.GetAllProcesses();
+
+                List<int> allPids = new();
+                bool isAdded = false;
+                HashSet<string> nameTrack = new ();
+                for (int idx = 0; idx < Program.allProcs.Count;idx++){
+                    var name = Program.allProcs[idx].Name.ToLower();
+
+                    isAdded = nameTrack.Add(name);
+                    // if isAdded, it means that the process name was successfully
+                    // added to the hashset, which means it hasn't been added previously
+                    // which means we want to add it to our list of pids
+                    // This all insures that each proc name is only added once.
+                    // For our snapshots, we only want one of each unique process added.
+                    if (isAdded){
+                        //Console.Write($"{allProcs[idx].Id} : ");
+                        allPids.Add(Program.allProcs[idx].ProcId);
+                    }
+                }
+                
+                SnapshotService snapsvc = new();
+                snapsvc.SaveAllProcs(allPids.ToArray());
+
+                wm.Parameters = $"{true}";
+                window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"

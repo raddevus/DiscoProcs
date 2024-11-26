@@ -23,7 +23,8 @@ var allCommands = ["getCurrentDirectory",
     "getAllProcNames",
     "getProcessModules",
     "getProcFileName", 
-    "getProcDetails"];
+    "getProcDetails",
+    "saveProcSnapshot"];
 
 function sendTestMsg(){  
     let message = {}; // create basic object
@@ -91,6 +92,16 @@ function sendTestMsg(){
     alert (s);
   }
 
+  function saveProcSnapshot(){
+    // Saves all proc details to sqlite3 snapshot table.
+    // This allows comparison of processes later.
+    let message = {}; 
+    message.Command = "saveProcSnapshot";
+    message.Parameters = document.querySelector("#procList").value;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
 function initMessageHandler(){
     window.external.receiveMessage(response => {
       response = JSON.parse(response);
@@ -147,6 +158,15 @@ function initMessageHandler(){
              console.log(`param: ${p}`);
            });
           displayProcDetails(allParams);
+          break;
+        }
+        case allCommands[8]:{
+          var result = response.Parameters.split(",")[0].toLowerCase();
+          if (result == "true"){
+            alert("Successfully saved snapshot.");
+            return;
+          }
+          alert("Couldn't save.");
           break;
         }
         default:{

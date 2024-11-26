@@ -22,6 +22,7 @@
     <Reference Include="NlSysInfo">
       <HintPath>.\External\NlSysInfo.dll</HintPath>
     </Reference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
   </ItemGroup>
 
 </Project>
