@@ -88,7 +88,15 @@ public class MainMessageHandler{
                 HashSet<string> nameTrack = new ();
                 for (int idx = 0; idx < Program.allProcs.Count;idx++){
                     var name = Program.allProcs[idx].Name.ToLower();
-
+                    if (String.IsNullOrEmpty(name)){
+                        var filename = Program.allProcs[idx].Filename;
+                        if (!String.IsNullOrEmpty(filename)){
+                            var beginIdx = filename.LastIndexOf(Path.DirectorySeparatorChar);
+                            if (beginIdx > -1){
+                                name = filename.Substring(beginIdx,filename.Length - beginIdx);
+                            }
+                        }
+                    }
                     isAdded = nameTrack.Add(name);
                     // if isAdded, it means that the process name was successfully
                     // added to the hashset, which means it hasn't been added previously
