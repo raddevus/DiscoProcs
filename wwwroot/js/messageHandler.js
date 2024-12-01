@@ -24,7 +24,8 @@ var allCommands = ["getCurrentDirectory",
     "getProcessModules",
     "getProcFileName", 
     "getProcDetails",
-    "saveProcSnapshot"];
+    "saveProcSnapshot",
+    "saveSelectedProcs"];
 
 function sendTestMsg(){  
     let message = {}; // create basic object
@@ -102,6 +103,18 @@ function sendTestMsg(){
     sendMessage(sMessage);
   }
 
+  function saveSelectedProcs(){
+    let message = {}; 
+    message.Command = "saveSelectedProcs";
+    var allProcIds = Array.from(document.querySelector("#procList").selectedOptions);
+    var allIdCsv = "";
+    allProcIds.map(v => allIdCsv += `${v.value},`);
+    console.log(allIdCsv);
+    message.Parameters = allIdCsv;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
 function initMessageHandler(){
     window.external.receiveMessage(response => {
       response = JSON.parse(response);
@@ -130,7 +143,8 @@ function initMessageHandler(){
 		        document.querySelector('#procList').append(localOption);
 		        //$("#procNames").val("");
           });
-          
+          // unselect all procs in the list
+          document.querySelector("#procList").selectedIndex = -1; 
           break;
         }
         case allCommands[5]:{
@@ -169,6 +183,15 @@ function initMessageHandler(){
           alert("Couldn't save.");
           break;
         }
+        case allCommands[9]:{
+          var result = response.Parameters.split(",")[0].toLowerCase();
+          if (result == "true"){
+            alert("Successfully saved selected procs.");
+            return;
+          }
+          alert("Couldn't save.");
+            break;
+          }
         default:{
             alert(response.Parameters);
             break;

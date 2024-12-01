@@ -116,6 +116,19 @@ public class MainMessageHandler{
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
+            case "saveSelectedProcs":{
+                wm.Parameters = "";
+                List<int> allPids = new();
+                foreach(string id in wm.AllParameters){
+                    allPids.Add(Convert.ToInt32(id)) ;
+                }
+                SnapshotService snapsvc = new();
+                snapsvc.SaveAllProcs(allPids.ToArray());
+
+                wm.Parameters = $"{true}";
+                window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"
