@@ -9,8 +9,8 @@ This app is built on [Photino.io](Photino.io) and runs on all Big-3 Operating Sy
 Runs on macOS, Linux, Windows
 Just build and run on any platform
 
-## Tests Included
-This project will create a sqlite db on your system.
+## Creates Sqlite DB & Tables
+This project will create a sqlite db on your system.<br/>
 It will create the sqlite db in your user share using the SpecialFolder LocalApplicationData<br/>
 Ex. (linux) `/home/<user-name>/.local/share` <br/>
 
