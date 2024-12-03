@@ -23,3 +23,6 @@ You will need to :
 4) Copy the DLL (NlSysInfo.dll) to the `DiscoProcs/external` folder<br/>
   You'll find the dll in the `NlSysInfo/NlSysInfo/bin/Debug/net8.0` directory
 6) Build & run DiscoProcs (`$ dotnet run`)
+
+## DiscoProcs Usage - So Far
+![DiscoProcsExplained](https://github.com/user-attachments/assets/06918739-69c8-4283-9967-1462399e8ff0)
