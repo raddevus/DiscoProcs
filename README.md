@@ -5,7 +5,7 @@ To build and run this project you'll need my other repo (.NET assembly / .DLL) l
 This project is written in C# & is built & runs on .net core 8.x
 
 ## Fully Cross-Platform
-This app is built on [Photino.io](Photino.io) and runs on all Big-3 Operating Systems.
+This app is built on [TryPhotino.io](https://www.tryphotino.io/) and runs on all Big-3 Operating Systems.
 Runs on macOS, Linux, Windows
 Just build and run on any platform
 
