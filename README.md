@@ -13,6 +13,7 @@ Just build and run on any platform
 This project will create a sqlite db on your system.<br/>
 It will create the sqlite db in your user share using the SpecialFolder LocalApplicationData<br/>
 Ex. (linux) `/home/<user-name>/.local/share` <br/>
+The sqlite filename is: `nlsysinfo.db`
 
 ## DiscoProcs Build Steps
 You will need to :
