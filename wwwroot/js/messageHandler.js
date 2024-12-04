@@ -204,9 +204,10 @@ function initMessageHandler(){
     document.querySelector("#pname").innerHTML = `<strong>Name</strong>: ${allParams[0]}`;
     document.querySelector("#pid").innerHTML = `<strong>PID</strong>: ${allParams[1]}`;
     document.querySelector("#pfile").innerHTML = `<strong>Exe File</strong>: ${allParams[2]}`;
-    document.querySelector("#psize").innerHTML = `<strong>Exe File Size</strong>: ${parseInt(allParams[3]).toLocaleString("en")}`;
-    document.querySelector("#pworkingset").innerHTML = `<strong>RAM</strong>: ${parseInt(allParams[4]).toLocaleString("en")} bytes used.`;
-    document.querySelector("#phash").innerHTML = `<strong>SHA256 (exe file)</strong>: ${allParams[5]}`;
+    document.querySelector("#pfiledate").innerHTML = `<strong>Exe File Date</strong>: ${allParams[3]}`;
+    document.querySelector("#psize").innerHTML = `<strong>Exe File Size</strong>: ${parseInt(allParams[4]).toLocaleString("en")}`;
+    document.querySelector("#pworkingset").innerHTML = `<strong>RAM</strong>: ${parseInt(allParams[5]).toLocaleString("en")} bytes used.`;
+    document.querySelector("#phash").innerHTML = `<strong>SHA256 (exe file)</strong>: ${allParams[6]}`;
     
   }
 
