@@ -17,7 +17,6 @@ function sendMessage(sMessage){
 
 // allCommands is the list of all commands (strings) processed by the switch statement
 var allCommands = ["getCurrentDirectory",
-    "testMsg",
     "getDirSeparator",
     "getUserProfile", 
     "getAllProcNames",
@@ -26,21 +25,6 @@ var allCommands = ["getCurrentDirectory",
     "getProcDetails",
     "saveProcSnapshot",
     "saveSelectedProcs"];
-
-function sendTestMsg(){  
-    let message = {}; // create basic object
-    message.Command = "testMsg";
-    // // Create all parameters as array
-    
-    let allParameters = [];
-    allParameters.push(today.yyyymmdd());
-    // // Call join on array to pass all parameters as a comma-delimited string
-    message.Parameters = allParameters.join();
-    console.log(`message.Parameters : ${message.Parameters}`);
-    
-    let sMessage = JSON.stringify(message);
-    sendMessage(sMessage);
-  }
 
   function getCurrentDir(){
     let message = {}; // create basic object
@@ -124,16 +108,12 @@ function initMessageHandler(){
           break;
         }
         case allCommands[1]:{
-            alert(`I got you! ${response.Parameters}`);
-            break;
-        }
-        case allCommands[2]:{
 
             dirSeparator = `${response.Parameters}`;
             alert(`dirSeparator ${dirSeparator}`);
             break;
         }
-        case allCommands[4]:{
+        case allCommands[3]:{
           var allProcs = response.Parameters.split(",");
           document.querySelector("#ProcCount").innerHTML = `Found ${allProcs.length} processes.`;
           allProcs.forEach (p => {
@@ -147,7 +127,7 @@ function initMessageHandler(){
           document.querySelector("#procList").selectedIndex = -1; 
           break;
         }
-        case allCommands[5]:{
+        case allCommands[4]:{
           return;
           var allProcs = response.Parameters.split(",");
           allProcs.forEach (p => {
@@ -160,13 +140,13 @@ function initMessageHandler(){
           
           break;
         }
-        case allCommands[6]:{
+        case allCommands[5]:{
           var procFileName = `${response.Parameters}`;
           alert(`filename : ${procFileName}`);
           
           break;
         }
-        case allCommands[7]:{
+        case allCommands[6]:{
           var allParams = response.Parameters.split(",");
           allParams.forEach(p => {
              console.log(`param: ${p}`);
@@ -174,7 +154,7 @@ function initMessageHandler(){
           displayProcDetails(allParams);
           break;
         }
-        case allCommands[8]:{
+        case allCommands[7]:{
           var result = response.Parameters.split(",")[0].toLowerCase();
           if (result == "true"){
             alert("Successfully saved snapshot.");
@@ -183,7 +163,7 @@ function initMessageHandler(){
           alert("Couldn't save.");
           break;
         }
-        case allCommands[9]:{
+        case allCommands[8]:{
           var result = response.Parameters.split(",")[0].toLowerCase();
           if (result == "true"){
             alert("Successfully saved selected procs.");
