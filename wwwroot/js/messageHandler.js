@@ -99,6 +99,15 @@ var allCommands = ["getCurrentDirectory",
     sendMessage(sMessage);
   }
 
+  function getProcInfoByName(){
+    let message = {};
+    message.Command = "getProcInfoByName";
+    var procName = document.querySelector("#procList").selectedOptions[0].textContent;
+    message.Parameters = procName;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
 function initMessageHandler(){
     window.external.receiveMessage(response => {
       response = JSON.parse(response);
@@ -172,6 +181,9 @@ function initMessageHandler(){
           alert("Couldn't save.");
             break;
           }
+        case allCommands[9]:{
+          //var result = response.Param
+        }
         default:{
             alert(response.Parameters);
             break;

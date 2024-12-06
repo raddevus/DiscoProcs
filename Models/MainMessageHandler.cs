@@ -129,6 +129,12 @@ public class MainMessageHandler{
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
+            case "getProcInfoByName":{
+                SnapshotRepository sr = new();
+                wm.Parameters =  sr.GetMatchingSnapshotsByName(wm.AllParameters[0]);
+                window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"
