@@ -24,7 +24,8 @@ var allCommands = ["getCurrentDirectory",
     "getProcFileName", 
     "getProcDetails",
     "saveProcSnapshot",
-    "saveSelectedProcs"];
+    "saveSelectedProcs",
+    "getProcInfoByName"];
 
   function getCurrentDir(){
     let message = {}; // create basic object
@@ -182,7 +183,10 @@ function initMessageHandler(){
             break;
           }
         case allCommands[9]:{
-          //var result = response.Param
+          var allSnapshotRows = JSON.parse(response.Parameters);
+          var rowCount = allSnapshotRows.length;
+          alert(`rowCount: ${rowCount} : ${allSnapshotRows[rowCount-1].Filename}`);
+          break;
         }
         default:{
             alert(response.Parameters);
