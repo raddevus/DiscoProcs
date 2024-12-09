@@ -1,6 +1,6 @@
 let today = new Date();
 initMessageHandler();
-
+window.rad = "super";
 let selector = document.querySelector("#procList");
  selector.addEventListener("click", () => {
    getProcDetails();
@@ -28,6 +28,7 @@ var allCommands = ["getCurrentDirectory",
     "getProcInfoByName"];
 
   function getCurrentDir(){
+    procName = document.querySelector("#procList").selectedOptions[0].textContent;
     let message = {}; // create basic object
     message.Command = "getCurrentDirectory";
     message.Parameters = "null";
@@ -128,6 +129,7 @@ function initMessageHandler(){
       switch (response.Command){
         case allCommands[0]:{
           alert(`current directory is: ${response.Parameters}`);
+          
           break;
         }
         case allCommands[1]:{

@@ -3,8 +3,10 @@ using System.Text.Json;
 using NewLibre;
 using DiscoProcs;
 using System.Reflection.Metadata.Ecma335;
+using System.ComponentModel;
 
 public class MainMessageHandler{
+   
     static public void MessageHandler(object? sender, string message) 
      {
         var window = sender as PhotinoWindow;
@@ -21,8 +23,11 @@ public class MainMessageHandler{
         
         switch(wm.Command){
             case "getCurrentDirectory":{
+                File.WriteAllText("procname.txt",  "Code");
                 wm.Parameters = Environment.CurrentDirectory;
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                ResultWindow rw = new ResultWindow();
+               
                 break;
             }
             case "getDirSeparator":{
@@ -131,8 +136,13 @@ public class MainMessageHandler{
             }
             case "getProcInfoByName":{
                 SnapshotRepository sr = new();
+                
                 wm.Parameters =  sr.GetMatchingSnapshotsByName(wm.AllParameters[0]);
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
+            case "showWindow":{
+
                 break;
             }
             default :{
