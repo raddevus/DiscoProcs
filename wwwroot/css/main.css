@@ -57,3 +57,33 @@ h1, .h1 {
     color: #1E5078;
     font-size: 1.8em;
 }
+
+.contextMenuItem:hover {background-color: #4281F4;color:white; }
+
+.RADcontextMenu {z-index:1000;
+                    visibility:hidden;
+                    display:none;
+                    width:200px;
+                    height:100px;
+                    position:absolute;
+                    font-family:'Sans Serif';
+                    font-size:14px;
+    }
+
+.RADcontextMenu ul{
+    /*width: 100%;  */
+    list-style-type: none; 
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+        
+    }
+.RADcontextMenu li{
+        /*width:100%;*/
+        margin: 0px 0px 0px 0px;
+        padding: 3px 0px 3px 15px;
+    }
+.RADcontextMenu .card-body{
+    width: 100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}

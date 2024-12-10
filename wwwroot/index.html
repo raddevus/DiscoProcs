@@ -10,6 +10,14 @@
     <script src="bootstrap533/js/bootstrap.bundle.js"></script>
 </head>
 <body>
+    <div class="RADcontextMenu card border border-primary">
+        <div class="card-body">
+          <ul>
+            <li onclick="onContextMenuClick(this)" id="save_procs" class="contextMenuItem">Save Selected Procs</li>
+            <li onclick="onContextMenuClick(this)" id="kill_process" class="contextMenuItem">Kill Process</li>
+        </ul>
+        </div>
+      </div>
     <h1 class="text-center">DiscoProc - Discover Running Processes</h1>
 
     <p class="text-center">
@@ -39,12 +47,7 @@
            </ul>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-3">
-            <button type="button" class="btn btn-primary btn-sm" onclick="saveSelectedProcs()">Save Selected Procs</button>
-        </div>
-    </div>
-
     <script src="js/messageHandler.js"></script>
+    <script src="js/contextMenu.js"></script>
 </body>
 </html>
