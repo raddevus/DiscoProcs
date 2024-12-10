@@ -26,3 +26,10 @@ You will need to :
 
 ## DiscoProcs Usage - So Far
 ![DiscoProcsExplained](https://github.com/user-attachments/assets/06918739-69c8-4283-9967-1462399e8ff0)
+
+## Update 2024-12-10
+### Added Context Menu
+Now you can right-click the Process List and you'll get two menu options for things you can do.
+1. Save Selected Procs
+2. Kill (selected) Process -- NOTE: there is no warning, selecting the menu item will attempt to kill the process
+![image](https://github.com/user-attachments/assets/972c367a-1ff7-46a8-ab90-ed3419622fc8)
