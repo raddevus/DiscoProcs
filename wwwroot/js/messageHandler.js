@@ -25,7 +25,8 @@ var allCommands = ["getCurrentDirectory",
     "getProcDetails",
     "saveProcSnapshot",
     "saveSelectedProcs",
-    "getProcInfoByName"];
+    "getProcInfoByName",
+    "killProcess"];
 
   function getCurrentDir(){
     let message = {}; // create basic object
@@ -122,6 +123,16 @@ var allCommands = ["getCurrentDirectory",
     sendMessage(sMessage);
   }
 
+  function killProcess(){
+    // Need to add warning message that this will kill the process!
+    let message = {}; 
+    message.Command = "killProcess";
+    message.Parameters = document.querySelector("#procList").value;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
+
 function initMessageHandler(){
     window.external.receiveMessage(response => {
       response = JSON.parse(response);
@@ -199,6 +210,17 @@ function initMessageHandler(){
           var allSnapshotRows = JSON.parse(response.Parameters);
           var rowCount = allSnapshotRows.length;
           alert(`rowCount: ${rowCount} : ${allSnapshotRows[rowCount-1].Filename}`);
+          break;
+        }
+        case allCommands[10]:{
+          
+          var result = response.Parameters.split(",")[0].toLowerCase();
+          if (result == "true"){
+            alert("Successfully killed proc.");
+          }
+          else{
+            alert("Could not kill the proc.");
+          }
           break;
         }
         default:{

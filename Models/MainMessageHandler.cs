@@ -135,6 +135,22 @@ public class MainMessageHandler{
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
+            case "killProcess": {
+                SnapshotService ss = new();
+                try{
+                    var procId = Convert.ToInt32(wm.Parameters);
+                    wm.Parameters = ss.KillProcess(procId).ToString();
+                    window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                }
+                catch (Exception ex){
+                    // couldn't conver the proc id to a valid int
+                    // so just return false.
+                    wm.Parameters = "false";
+                    window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                }
+                
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"
