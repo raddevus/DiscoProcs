@@ -20,23 +20,11 @@ html, body {
  }
 
 body {
-    padding: 2em;
+    padding: .2em;
     color: #111;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 15px;
     font-weight: normal;
-}
-
-.logo {
-    display: block;
-    width: 300px;
-    height: auto;
-    margin: 3em auto 2em;
-}
-
-.center {
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .text-center {

@@ -10,43 +10,58 @@
     <script src="bootstrap533/js/bootstrap.bundle.js"></script>
 </head>
 <body>
+
     <div class="RADcontextMenu card border border-primary">
         <div class="card-body">
-          <ul>
+        <ul>
             <li onclick="onContextMenuClick(this)" id="save_procs" class="contextMenuItem">Save Selected Procs</li>
             <li onclick="onContextMenuClick(this)" id="kill_process" class="contextMenuItem">Kill Process</li>
         </ul>
         </div>
-      </div>
-    <h1 class="text-center">DiscoProc - Discover Running Processes</h1>
-
-    <p class="text-center">
-        Click the [Get All Proc Names] button to get started.
-    </p>
-    <button type="button" class="btn btn-primary btn-sm" onclick="getCurrentDir()">GetCurrentDir</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick="getAllProcNames()">Get All Proc Names</button>
-    <button type="button" class="btn btn-primary btn-sm" onclick="saveProcSnapshot()">Save Proc Snapshot</button>
-    
-    <div class="container-fluid mt-3">
-        <div class = "row">
-            <div class="col-sm-12" id="ProcCount"></div>
-        </div>
-        <div class="row">
-            <select class="col-sm-4" id="procList" size="10" multiple>
-                <option></option>
-            </select>
-            <ul class="col-sm-8 list-group ">
-                <li class="list-group-item active" aria-current="true">Process Details</li>
-                <li class="list-group-item" id="pname"></li>
-                <li class="list-group-item" id="pid"></li>
-                <li class="list-group-item" id="pfile"></li>
-                <li class="list-group-item" id="pfiledate"></li>
-                <li class="list-group-item" id="psize"></li>
-                <li class="list-group-item" id="pworkingset"></li>
-                <li class="list-group-item" id="phash"></li>
-           </ul>
-        </div>
     </div>
+    <div class="d-flex align-items-start">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-main-tab" data-bs-toggle="pill" href="#v-pills-main" role="tab" aria-controls="v-pills-main" aria-selected="true">Main</a>
+            <a class="nav-link" id="v-pills-system-tab" data-bs-toggle="pill" href="#v-pills-system" role="tab" aria-controls="v-pills-system" aria-selected="true">System</a>
+        </div>
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-main" role="tabpanel" aria-labelledby="v-pills-main-tab">
+                <h1 class="text-center">DiscoProc - Discover Running Processes</h1>
+
+                <p class="text-center">
+                    Click the [Get All Proc Names] button to get started.
+                </p>
+                <button type="button" class="btn btn-primary btn-sm" onclick="getCurrentDir()">GetCurrentDir</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="getAllProcNames()">Get All Proc Names</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="saveProcSnapshot()">Save Proc Snapshot</button>
+                
+                <div class="container-fluid mt-3">
+                    <div class = "row">
+                        <div class="col-sm-12" id="ProcCount"></div>
+                    </div>
+                    <div class="row">
+                        <select class="col-sm-4" id="procList" size="10" multiple>
+                            <option></option>
+                        </select>
+                        <ul class="col-sm-8 list-group ">
+                            <li class="list-group-item active" aria-current="true">Process Details</li>
+                            <li class="list-group-item" id="pname"></li>
+                            <li class="list-group-item" id="pid"></li>
+                            <li class="list-group-item" id="pfile"></li>
+                            <li class="list-group-item" id="pfiledate"></li>
+                            <li class="list-group-item" id="psize"></li>
+                            <li class="list-group-item" id="pworkingset"></li>
+                            <li class="list-group-item" id="phash"></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade show active" id="v-pills-system" role="tabpanel" aria-labelledby="v-pills-system-tab">
+                
+            </div>
+        </div>
+        </div>
     <script src="js/messageHandler.js"></script>
     <script src="js/contextMenu.js"></script>
 </body>
