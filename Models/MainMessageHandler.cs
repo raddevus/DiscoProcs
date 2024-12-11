@@ -119,6 +119,11 @@ public class MainMessageHandler{
             case "saveSelectedProcs":{
                 wm.Parameters = "";
                 List<int> allPids = new();
+                if (wm.AllParameters.Count() <= 0){
+                    wm.Parameters = $"{false}";
+                    window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                    return;    
+                }
                 foreach(string id in wm.AllParameters){
                     allPids.Add(Convert.ToInt32(id)) ;
                 }
