@@ -209,7 +209,8 @@ function initMessageHandler(){
         case allCommands[9]:{
           var allSnapshotRows = JSON.parse(response.Parameters);
           var rowCount = allSnapshotRows.length;
-          alert(`rowCount: ${rowCount} : ${allSnapshotRows[rowCount-1].Filename}`);
+          showSystemTab();
+          displayProcEntryTable(allSnapshotRows, "#procentries");
           break;
         }
         case allCommands[10]:{
@@ -229,6 +230,16 @@ function initMessageHandler(){
         }
       }
     });
+  }
+
+  function showSystemTab(){
+    document.querySelector('#v-pills-main').classList.remove('active');
+    document.querySelector('#v-pills-main').classList.remove('show');
+    document.querySelector('#v-pills-main-tab').classList.remove('active');
+    document.querySelector('#v-pills-system').classList.remove('active');
+    document.querySelector('#v-pills-system').classList.add('active');
+    document.querySelector('#v-pills-system').classList.add('show');
+    document.querySelector('#v-pills-system-tab').classList.add('active');
   }
 
   function displayProcDetails(allParams){

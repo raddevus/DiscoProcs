@@ -47,9 +47,9 @@ function onContextMenuClick(e)
         killProcess();
         break;
       }
-    case 'unused_1':
+    case 'get_proc_info_byName':
       {
-        break;
+        getProcInfoByName();
       }
     case 'unused_2':
       {

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="bootstrap533/css/bootstrap.css"/>
     <link rel="stylesheet" href="css/main.css" />
     <script src="bootstrap533/js/bootstrap.bundle.js"></script>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 </head>
 <body>
 
@@ -16,6 +18,7 @@
         <ul>
             <li onclick="onContextMenuClick(this)" id="save_procs" class="contextMenuItem">Save Selected Procs</li>
             <li onclick="onContextMenuClick(this)" id="kill_process" class="contextMenuItem">Kill Process</li>
+            <li onclick="onContextMenuClick(this)" id="get_proc_info_byName" class="contextMenuItem">Get Proc History</li>
         </ul>
         </div>
     </div>
@@ -57,11 +60,33 @@
                 </div>
             </div>
 
-            <div class="tab-pane fade show active" id="v-pills-system" role="tabpanel" aria-labelledby="v-pills-system-tab">
-                
+            <div class="tab-pane fade show" id="v-pills-system" role="tabpanel" aria-labelledby="v-pills-system-tab">
+                <div id="procEntries">
+                    <h2>Process Entries</h2>
+                        <div id="history-spinner" class="text-center text-success">
+                          <div class="spinner-border" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                          </div>
+                        </div>  
+                        <table id="procEntryTable" class="table  table-striped">
+                            <thead class="table-success">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>FileName</th>   
+                                    <th>FileDate</th>
+                                    <th>FileHash</th>
+                                    <th>FileSize</th>
+                                    <th>Created</th>
+                                </tr>
+                            </thead>
+                            <tbody id="procentries">
+                            </tbody>
+                          </table>
+                </div>
             </div>
         </div>
         </div>
+    <script src="js/procEntryTable.js"></script>
     <script src="js/messageHandler.js"></script>
     <script src="js/contextMenu.js"></script>
 </body>

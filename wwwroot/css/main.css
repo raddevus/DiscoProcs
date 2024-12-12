@@ -8,6 +8,9 @@ html, body {
     background-color: lightblue;
  }
 
+.k-hidden{visibility:hidden;display:none;}
+.k-show{visibility:visible;display:block;}
+
  ul {
     display:block;
     flex-wrap: wrap;
