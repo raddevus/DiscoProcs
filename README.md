@@ -24,6 +24,21 @@ You will need to :
   You'll find the dll in the `NlSysInfo/NlSysInfo/bin/Debug/net8.0` directory
 6) Build & run DiscoProcs (`$ dotnet run`)
 
+## Updates 2024-12-12
+1. Added a (right-click) context menu on the list of processes.
+2. Added the ability to view the history of your process snapshots (data saved in your sqlite db)
+3. Click the process you want to examine, right-click for menu, select "Get Proc History"
+4. The System tab will open and display the changes (if any).
+5. Notice that the filehash changed -- which means the exe file behind the proc changed. (see next two snapshots)
+   
+
+![image](https://github.com/user-attachments/assets/3dd75213-1d6c-46d1-a371-c7262853cde5)
+
+
+![image](https://github.com/user-attachments/assets/78a3be29-a8c7-4fcf-ac6e-54d2c5d153bd)
+
+
+
 ## DiscoProcs Usage - So Far
 ![DiscoProcsExplained](https://github.com/user-attachments/assets/06918739-69c8-4283-9967-1462399e8ff0)
 
