@@ -26,7 +26,8 @@ var allCommands = ["getCurrentDirectory",
     "saveProcSnapshot",
     "saveSelectedProcs",
     "getProcInfoByName",
-    "killProcess"];
+    "killProcess",
+    "getSpecialFolders"];
 
   function getCurrentDir(){
     let message = {}; // create basic object
@@ -132,6 +133,14 @@ var allCommands = ["getCurrentDirectory",
     sendMessage(sMessage);
   }
 
+  function getAllSpecialFolders(){
+    let message = {}; 
+    message.Command = "getAllSpecialFolders";
+    message.Parameters = "null"
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
 
 function initMessageHandler(){
     window.external.receiveMessage(response => {
@@ -222,6 +231,11 @@ function initMessageHandler(){
           else{
             alert("Could not kill the proc.");
           }
+          break;
+        }
+        case allCommands[11]:{
+          var allSpecFolders = JSON.parse(response.Parameters);
+          console.log(response.Parameters);
           break;
         }
         default:{

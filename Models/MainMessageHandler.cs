@@ -156,6 +156,14 @@ public class MainMessageHandler{
                 
                 break;
             }
+            case "getAllSpecialFolders":{
+                EnvironmentService es = new ();
+                
+                wm.Parameters = es.GetSpecialFolders();
+                Console.WriteLine(wm.Parameters);
+                window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"
