@@ -64,13 +64,26 @@ function searchProcList(){
   document.querySelector("#procList").selectedIndex = -1;
   var allItems = Array.from(document.querySelector("#procList").options);
   let searchText = prompt("Please enter name of proc you're trying to find");
-  alert(searchText);
+  
+  var foundCount = 0;
+  var optionItem = null;
   if (searchText != null){
     allItems.find((s) => {
       if (s.textContent.toUpperCase().search(searchText.toUpperCase()) >= 0){
         s.selected = true;
+        ++foundCount;
+        if (foundCount == 1){
+          optionItem = s;
+        }
       }
     })
+    if (foundCount >= 1){
+      // this means we found at least one and
+      // we want to scroll that first one into view.
+      if (optionItem){
+        optionItem.scrollIntoView();
+      }
+    }
   }
 }
 
