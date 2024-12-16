@@ -17,7 +17,7 @@ const buildResultTable = function(dataRows){
      let allItems = [];
 
     for (let x=0; x < dataRows.length;x++){
-        console.log(`procEntries[${x}].Name: ${dataRows[x].Name}`);
+        console.log(`dataRows[${x}].Name: ${dataRows[x].Name}`);
         let currentId = dataRows[x].id;
         allItems.push( React.createElement("tr",{key:x, id:dataRows[x].id},
         

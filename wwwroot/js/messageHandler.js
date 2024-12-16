@@ -219,7 +219,7 @@ function initMessageHandler(){
           var allSnapshotRows = JSON.parse(response.Parameters);
           var rowCount = allSnapshotRows.length;
           showSystemTab();
-          displayResultTable(allSnapshotRows, "#procentries", buildResultTable);
+          displayResultTable(allSnapshotRows, "#tableresults", buildResultTable);
           break;
         }
         case allCommands[10]:{
