@@ -10,7 +10,27 @@ function displayResultTable(dataRows, rootElement, targetFunc){
     );
 }
 
-const buildResultTable = function(dataRows){
+const buildSpecFoldersResultTable = function(dataRows){
+
+    console.log(dataRows[0]);
+    
+     let allItems = [];
+     let currentId = 0;
+    for (let x=0; x < dataRows.length;x++){
+        console.log(`dataRows[${x}].FolderName: ${dataRows[x].FolderName}`);
+        
+        allItems.push( React.createElement("tr",{key:x, id:dataRows[x].id},
+        
+            React.createElement("td",{id:`foldername-${currentId}`}, dataRows[x].folderName),
+            React.createElement("td",{id:`folderpath-${currentId}`}, dataRows[x].folderPath),
+        )
+       );
+       currentId++;
+    }
+    return allItems;
+}
+
+const buildProcResultTable = function(dataRows){
 
     console.log(dataRows[0]);
     
