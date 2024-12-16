@@ -133,9 +133,9 @@ var allCommands = ["getCurrentDirectory",
     sendMessage(sMessage);
   }
 
-  function getAllSpecialFolders(){
+  function getSpecialFolders(){
     let message = {}; 
-    message.Command = "getAllSpecialFolders";
+    message.Command = "getSpecialFolders";
     message.Parameters = "null"
     let sMessage = JSON.stringify(message);
     sendMessage(sMessage);

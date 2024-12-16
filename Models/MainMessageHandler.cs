@@ -156,7 +156,7 @@ public class MainMessageHandler{
                 
                 break;
             }
-            case "getAllSpecialFolders":{
+            case "getSpecialFolders":{
                 EnvironmentService es = new ();
                 
                 wm.Parameters = es.GetSpecialFolders();
