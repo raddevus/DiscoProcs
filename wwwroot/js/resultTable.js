@@ -1,16 +1,16 @@
-function displayProcEntryTable(procEntries, rootElement){
+function displayResultTable(procEntries, rootElement, targetFunc){
     console.log(`userTasks ${JSON.stringify(procEntries)}`);
     //initUserTaskTable();
     ReactDOM.render(
         // We are passing in just the tasks - not the outer object 
         // which includes the success property
-        ProcEntryTable (procEntries),
+        targetFunc (procEntries),
         document.querySelector(rootElement),
         hideWaitCursor("#history-spinner")
     );
 }
 
-const ProcEntryTable = function(procEntries){
+const buildResultTable = function(procEntries){
 
     console.log(procEntries[0]);
     

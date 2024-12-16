@@ -50,6 +50,7 @@ function onContextMenuClick(e)
     case 'get_proc_info_byName':
       {
         getProcInfoByName();
+        break;
       }
     case 'find_proc_by_name':
       {
