@@ -51,10 +51,26 @@ function onContextMenuClick(e)
       {
         getProcInfoByName();
       }
-    case 'unused_2':
+    case 'find_proc_by_name':
       {
+        searchProcList();     
         break;
       }
+  }
+}
+
+function searchProcList(){
+  // next line unselects all selected items
+  document.querySelector("#procList").selectedIndex = -1;
+  var allItems = Array.from(document.querySelector("#procList").options);
+  let searchText = prompt("Please enter name of proc you're trying to find");
+  alert(searchText);
+  if (searchText != null){
+    allItems.find((s) => {
+      if (s.textContent.toUpperCase().search(searchText.toUpperCase()) >= 0){
+        s.selected = true;
+      }
+    })
   }
 }
 
