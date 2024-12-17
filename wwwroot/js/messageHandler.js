@@ -1,6 +1,10 @@
 let today = new Date();
 initMessageHandler();
 
+document.querySelector("#v-pills-main-tab").addEventListener("click", () => {
+  scrollSelectedItemIntoView();
+});
+
 let selector = document.querySelector("#procList");
  selector.addEventListener("click", () => {
    getProcDetails();
@@ -13,6 +17,13 @@ selector.addEventListener("change", () => {
 function sendMessage(sMessage){
     console.log(sMessage);
     window.external.sendMessage(sMessage);
+}
+
+function scrollSelectedItemIntoView(){
+  var procList = document.querySelector("#procList");
+  if (procList.selectedIndex >= 0){
+    procList.selectedOptions[0].scrollIntoView();
+  }
 }
 
 // allCommands is the list of all commands (strings) processed by the switch statement
