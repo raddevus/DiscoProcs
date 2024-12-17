@@ -230,7 +230,7 @@ function initMessageHandler(){
           var allSnapshotRows = JSON.parse(response.Parameters);
           var rowCount = allSnapshotRows.length;
           showSystemTab();
-          displayResultTable(allSnapshotRows, "#tableresults", buildProcResultTable);
+          displayResultTable(allSnapshotRows, "#tableresults", buildProcResultTable,"history");
           break;
         }
         case allCommands[10]:{
@@ -249,7 +249,7 @@ function initMessageHandler(){
           console.log(response.Parameters);
           var rowCount = allSpecFolders.length;
           showSystemTab();
-          displayResultTable(allSpecFolders, "#tableresults", buildSpecFoldersResultTable);
+          displayResultTable(allSpecFolders, "#tableresults", buildSpecFoldersResultTable,"specialFolders");
           break;
         }
         default:{

@@ -1,13 +1,47 @@
-function displayResultTable(dataRows, rootElement, targetFunc){
+function displayResultTable(dataRows, rootElement, targetFunc, headerName){
     console.log(`userTasks ${JSON.stringify(dataRows)}`);
     //initUserTaskTable();
+    
+    
     ReactDOM.render(
         // We are passing in just the tasks - not the outer object 
         // which includes the success property
         targetFunc (dataRows),
         document.querySelector(rootElement),
-        hideWaitCursor("#history-spinner")
+        hideWaitCursor("#history-spinner"),
     );
+
+    ReactDOM.render(
+        getHeaders(headerName),
+        document.querySelector("#tableHeaders")
+    );
+}
+
+function getHeaders(headerName){
+    var allHeaders = [];    
+    var headerCounter = 0;
+    switch (headerName){
+        case "history": {
+            allHeaders.push( React.createElement("tr",{key:headerCounter, id:headerCounter++},
+                React.createElement("td",{id:`name-${headerCounter}`}, "Name"),
+                React.createElement("td",{id:`filenameHdr-${headerCounter}`}, "FileName"),
+                React.createElement("td",{id:`filedateHdr-${headerCounter}`}, "FileDate"),
+                React.createElement("td",{id:`fileHashHdr-${headerCounter}`}, "FileHash"),
+                React.createElement("td",{id:`FileSizeHdr-${headerCounter}`}, "FileSize"),
+                React.createElement("td",{id:`createdHdr-${headerCounter}`}, "Created")
+            ));
+            break;
+        }
+        case "specialFolders":{
+            allHeaders.push( React.createElement("tr",{key:headerCounter, id:headerCounter++},
+                React.createElement("td",{id:`name-${headerCounter}`}, "FolderName"),
+                React.createElement("td",{id:`filenameHdr-${headerCounter}`}, "FolderPath")
+            ));
+            break;
+        }
+    }
+    
+    return allHeaders;
 }
 
 const buildSpecFoldersResultTable = function(dataRows){
