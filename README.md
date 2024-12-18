@@ -24,6 +24,21 @@ You will need to :
   You'll find the dll in the `NlSysInfo/NlSysInfo/bin/Debug/net8.0` directory
 6) Build & run DiscoProcs (`$ dotnet run`)
 
+## Updates 2024-12-18
+1. Added ability to Find Proc By Name - right-click the proc list, select context menu item then search by text
+2. Added ability to Get Special Folders (via new "More..." menu on upper left) -- see snapshot below
+3. Add ability to view all Environment Variables (also available via "More..." menu) -- see snapshot below
+
+![image](https://github.com/user-attachments/assets/cc31225b-3f51-4f3e-b13d-4b40730f2f25)
+
+## Get Special Folders Result
+
+![image](https://github.com/user-attachments/assets/869f3bb6-fe48-4b08-b8f5-827ed48f872c)
+
+## Get All Environment Variables
+
+![image](https://github.com/user-attachments/assets/0281753d-0559-48bd-aa6a-ad3e276fd541)
+
 ## Updates 2024-12-12
 1. Added a (right-click) context menu on the list of processes.
 2. Added the ability to view the history of your process snapshots (data saved in your sqlite db)
