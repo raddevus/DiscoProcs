@@ -39,9 +39,35 @@ function getHeaders(headerName){
             ));
             break;
         }
+        case "envvars":{
+            allHeaders.push( React.createElement("tr",{key:headerCounter, id:headerCounter++},
+                React.createElement("td",{id:`name-${headerCounter}`}, "Variable Name"),
+                React.createElement("td",{id:`filenameHdr-${headerCounter}`}, "Value")
+            ));
+            break;
+        }
     }
     
     return allHeaders;
+}
+
+const buildEnvVarsResultTable = function(dataRows){
+    console.log(dataRows[0]);
+    
+    let allItems = [];
+    let currentId = 0;
+   for (let x=0; x < dataRows.length;x++){
+       console.log(`dataRows[${x}].FolderName: ${dataRows[x].FolderName}`);
+       
+       allItems.push( React.createElement("tr",{key:x, id:dataRows[x].id},
+       
+           React.createElement("td",{id:`varname-${currentId}`}, dataRows[x].name),
+           React.createElement("td",{id:`varvalue-${currentId}`}, dataRows[x].value),
+       )
+      );
+      currentId++;
+   }
+   return allItems;
 }
 
 const buildSpecFoldersResultTable = function(dataRows){

@@ -1,6 +1,14 @@
 let today = new Date();
 initMessageHandler();
 
+document.querySelector("#specFoldersBtn").addEventListener("click", () => {
+  getSpecialFolders();
+});
+
+document.querySelector("#envVarsBtn").addEventListener("click", () => {
+  getEnvironmentVars();
+});
+
 document.querySelector("#v-pills-main-tab").addEventListener("click", () => {
   scrollSelectedItemIntoView();
 });
@@ -38,7 +46,8 @@ var allCommands = ["getCurrentDirectory",
     "saveSelectedProcs",
     "getProcInfoByName",
     "killProcess",
-    "getSpecialFolders"];
+    "getSpecialFolders",
+    "getEnvVars"];
 
   function getCurrentDir(){
     let message = {}; // create basic object
@@ -152,6 +161,14 @@ var allCommands = ["getCurrentDirectory",
     sendMessage(sMessage);
   }
 
+  function getEnvironmentVars(){
+    let message = {}; 
+    message.Command = "getEnvVars";
+    message.Parameters = "null"
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
 
 function initMessageHandler(){
     window.external.receiveMessage(response => {
@@ -250,6 +267,14 @@ function initMessageHandler(){
           var rowCount = allSpecFolders.length;
           showSystemTab();
           displayResultTable(allSpecFolders, "#tableresults", buildSpecFoldersResultTable,"specialFolders");
+          break;
+        }
+        case allCommands[12]:{
+          var allEnvVars = JSON.parse(response.Parameters);
+          console.log(response.Parameters);
+          var rowCount = allEnvVars.length;
+          showSystemTab();
+          displayResultTable(allEnvVars, "#tableresults", buildEnvVarsResultTable,"envvars");
           break;
         }
         default:{
