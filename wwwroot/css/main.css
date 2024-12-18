@@ -15,6 +15,10 @@ bootstrap basic menu hover / focus colors */
     background-color: lightblue;
  }
 
+ .gutter{
+    padding-left: 8px;
+ }
+
 .k-hidden{visibility:hidden;display:none;}
 .k-show{visibility:visible;display:block;}
 
