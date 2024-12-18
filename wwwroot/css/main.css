@@ -3,6 +3,13 @@ html, body {
     padding: 0;
 }
 
+/* RADDEVUS - 2024-12-18 overriding the 
+bootstrap basic menu hover / focus colors */
+.dropdown-item:hover, .dropdown-item:focus {
+    color:white;
+    background-color: green;
+}
+
 #procList option{
     padding-right:20px;
     background-color: lightblue;
