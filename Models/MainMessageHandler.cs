@@ -173,7 +173,8 @@ public class MainMessageHandler{
             case "doesFileExist":{
                 var procFile = wm.Parameters.Trim();
                 var result = File.Exists(procFile);
-                wm.Parameters = result.ToString();
+                wm.Parameters = JsonSerializer.Serialize(new {doesExist=result, procFile= (result ? procFile : string.Empty)});
+                Console.WriteLine(wm.Parameters);
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }

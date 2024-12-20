@@ -304,8 +304,11 @@ function initMessageHandler(){
           break;
         }
         case allCommands[13]:{
-          var doesExist = response.Parameters;
-          alert(doesExist);
+          alert(response.Parameters);
+          var result = JSON.parse(response.Parameters);
+          if (result.doesExist){
+            addProcToList();
+          }
           break;
         }
         default:{
@@ -314,6 +317,10 @@ function initMessageHandler(){
         }
       }
     });
+  }
+
+  function addProcToList(){
+    alert("Nothing to see here yet. \nComing soon.");
   }
 
   function setButtonActive(idForActive){
