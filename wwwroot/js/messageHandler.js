@@ -22,6 +22,31 @@ selector.addEventListener("change", () => {
   getProcDetails();
 });
 
+document.querySelector("#saveProcPathBtn").addEventListener("click", () =>
+  {
+    addNewProc();
+  }
+);
+
+function addNewProc(){
+  let procPath = document.querySelector("#procPath").value;
+  if (procPath == ""){
+    alert("Please add a path to a process & try again.");
+    return;
+  }
+  checkIfProcFileExists(procPath);
+  // At this point processing gets pushed to the 
+  // switch statement -- after the c# File.Exists() call is completed
+}
+
+function checkIfProcFileExists(procPath){
+  let message = {}; // create basic object
+    message.Command = "doesFileExist";
+    message.Parameters = procPath;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+}
+
 function sendMessage(sMessage){
     console.log(sMessage);
     window.external.sendMessage(sMessage);
@@ -47,7 +72,8 @@ var allCommands = ["getCurrentDirectory",
     "getProcInfoByName",
     "killProcess",
     "getSpecialFolders",
-    "getEnvVars"];
+    "getEnvVars",
+    "doesFileExist"];
 
   function getCurrentDir(){
     let message = {}; // create basic object
@@ -275,6 +301,11 @@ function initMessageHandler(){
           var rowCount = allEnvVars.length;
           setButtonActive("v-pills-system");
           displayResultTable(allEnvVars, "#tableresults", buildEnvVarsResultTable,"envvars");
+          break;
+        }
+        case allCommands[13]:{
+          var doesExist = response.Parameters;
+          alert(doesExist);
           break;
         }
         default:{

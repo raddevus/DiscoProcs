@@ -170,6 +170,13 @@ public class MainMessageHandler{
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
+            case "doesFileExist":{
+                var procFile = wm.Parameters.Trim();
+                var result = File.Exists(procFile);
+                wm.Parameters = result.ToString();
+                window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"
