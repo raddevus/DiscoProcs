@@ -246,7 +246,7 @@ function initMessageHandler(){
         case allCommands[9]:{
           var allSnapshotRows = JSON.parse(response.Parameters);
           var rowCount = allSnapshotRows.length;
-          showSystemTab();
+          setButtonActive("v-pills-system");
           displayResultTable(allSnapshotRows, "#tableresults", buildProcResultTable,"history");
           break;
         }
@@ -265,7 +265,7 @@ function initMessageHandler(){
           var allSpecFolders = JSON.parse(response.Parameters);
           console.log(response.Parameters);
           var rowCount = allSpecFolders.length;
-          showSystemTab();
+          setButtonActive("v-pills-system");
           displayResultTable(allSpecFolders, "#tableresults", buildSpecFoldersResultTable,"specialFolders");
           break;
         }
@@ -273,7 +273,7 @@ function initMessageHandler(){
           var allEnvVars = JSON.parse(response.Parameters);
           console.log(response.Parameters);
           var rowCount = allEnvVars.length;
-          showSystemTab();
+          setButtonActive("v-pills-system");
           displayResultTable(allEnvVars, "#tableresults", buildEnvVarsResultTable,"envvars");
           break;
         }
@@ -285,14 +285,14 @@ function initMessageHandler(){
     });
   }
 
-  function showSystemTab(){
-    document.querySelector('#v-pills-main').classList.remove('active');
-    document.querySelector('#v-pills-main').classList.remove('show');
-    document.querySelector('#v-pills-main-tab').classList.remove('active');
-    document.querySelector('#v-pills-system').classList.remove('active');
-    document.querySelector('#v-pills-system').classList.add('active');
-    document.querySelector('#v-pills-system').classList.add('show');
-    document.querySelector('#v-pills-system-tab').classList.add('active');
+  function setButtonActive(idForActive){
+    Array.from(document.querySelectorAll(".nav-link")).map( tabPanels => tabPanels.classList.remove("active"));
+    Array.from(document.querySelectorAll(".nav-link")).map( tabPanels => tabPanels.classList.remove("show"));
+    Array.from(document.querySelectorAll(".tab-pane")).map( tabPanels => tabPanels.classList.remove("active"));
+    Array.from(document.querySelectorAll(".tab-pane")).map( tabPanels => tabPanels.classList.remove("show"));
+    document.querySelector(`#${idForActive}`).classList.add('show');
+    document.querySelector(`#${idForActive}`).classList.add('active');
+    document.querySelector(`#${idForActive}-tab`).classList.add('active');
   }
 
   function displayProcDetails(allParams){
