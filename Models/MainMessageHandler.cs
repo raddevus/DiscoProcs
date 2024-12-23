@@ -178,6 +178,14 @@ public class MainMessageHandler{
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
+            case "startProcess":{
+                var procFile = wm.Parameters.Trim();
+                EnvironmentService es = new();
+                var procId = es.StartProcess(procFile);
+                wm.Parameters = JsonSerializer.Serialize(new{procId=procId});
+                window?.SendWebMessage(JsonSerializer.Serialize(wm));
+                break;
+            }
             default :{
                 // The message argument is coming in from sendMessage.
                 // "window.external.sendMessage(message: string)"

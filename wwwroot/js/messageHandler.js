@@ -47,6 +47,14 @@ function checkIfProcFileExists(procPath){
     sendMessage(sMessage);
 }
 
+function startProcess(procPath){
+  let message = {}; // create basic object
+    message.Command = "startProcess";
+    message.Parameters = procPath;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+}
+
 function sendMessage(sMessage){
     console.log(sMessage);
     window.external.sendMessage(sMessage);
@@ -73,7 +81,8 @@ var allCommands = ["getCurrentDirectory",
     "killProcess",
     "getSpecialFolders",
     "getEnvVars",
-    "doesFileExist"];
+    "doesFileExist",
+    "startProcess"];
 
   function getCurrentDir(){
     let message = {}; // create basic object
@@ -307,8 +316,18 @@ function initMessageHandler(){
           alert(response.Parameters);
           var result = JSON.parse(response.Parameters);
           if (result.doesExist){
-            addProcToList();
+            startProcess(result.procFile);
           }
+          break;
+        }
+        case allCommands[14]:{
+          var result = JSON.parse(response.Parameters);
+          // -1 indicates that process couldn't be started
+          if (result.procId == -1){
+            alert("Couldn't start that process.");
+            return;
+          }
+          alert(`Started the new process. pid:  ${result.procId}`);
           break;
         }
         default:{
@@ -317,10 +336,6 @@ function initMessageHandler(){
         }
       }
     });
-  }
-
-  function addProcToList(){
-    alert("Nothing to see here yet. \nComing soon.");
   }
 
   function setButtonActive(idForActive){
