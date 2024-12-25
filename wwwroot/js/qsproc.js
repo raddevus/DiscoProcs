@@ -4,3 +4,9 @@
 // add one or more sets of processes she 
 // wants to start from DiscProcs
 
+class QSProc{
+    constructor(exePath, params){
+        this.ExePath = exePath;
+        this.Params = params;
+    }
+}
