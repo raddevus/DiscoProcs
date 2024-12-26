@@ -29,8 +29,9 @@ document.querySelector("#saveProcPathBtn").addEventListener("click", () =>
 );
 
 function setActiveState(htmlEl){
-  Array.from(document.querySelectorAll(".procBtnGroup")).map( btnGroup => btnGroup.classList.remove("active"));
+  Array.from(document.querySelectorAll(".procBtnGroup")).map( btnGroup => {btnGroup.classList.remove("active");  btnGroup.classList.remove("current");});
   htmlEl.classList.add("active");
+  htmlEl.setAttribute("aria-current","current");
 }
 
 function addNewProc(){
