@@ -28,6 +28,11 @@ document.querySelector("#saveProcPathBtn").addEventListener("click", () =>
   }
 );
 
+function setActiveState(htmlEl){
+  Array.from(document.querySelectorAll(".procBtnGroup")).map( btnGroup => btnGroup.classList.remove("active"));
+  htmlEl.classList.add("active");
+}
+
 function addNewProc(){
   let procPath = document.querySelector("#procPath").value;
   if (procPath == ""){
