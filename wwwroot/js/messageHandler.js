@@ -1,5 +1,10 @@
+
 let today = new Date();
+let allLocalProcs = [];
 initMessageHandler();
+// read all the local procs from localStorage
+initLocalProcs();
+let procButtonCount = allLocalProcs.length ? allLocalProcs.length : 0;
 
 document.querySelector("#specFoldersBtn").addEventListener("click", () => {
   getSpecialFolders();
@@ -345,10 +350,15 @@ function initMessageHandler(){
     });
   }
 
+  function initLocalProcs(){
+    allLocalProcs = localStorage.getItem(`allProcs`);
+    if (!allLocalProcs){allLocalProcs = [];}
+  }
+
   function addProcessToList(procFile){
       var newButton = document.createElement("button");
       newButton.textContent = procFile;
-      newButton.setAttribute(`id`,"proc_006");
+      newButton.setAttribute(`id`,`proc-${++procButtonCount}`);
       newButton.setAttribute(`onclick`,"setActiveState(this)");
       newButton.setAttribute(`type`,"button");
       newButton.setAttribute(`class`,"procBtnGroup list-group-item list-group-item-action");
