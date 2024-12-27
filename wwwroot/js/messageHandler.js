@@ -322,7 +322,8 @@ function initMessageHandler(){
           alert(response.Parameters);
           var result = JSON.parse(response.Parameters);
           if (result.doesExist){
-            startProcess(result.procFile);
+            addProcessToList(result.procFile)
+            // --> We will start process later --> startProcess(result.procFile);
           }
           break;
         }
@@ -342,6 +343,17 @@ function initMessageHandler(){
         }
       }
     });
+  }
+
+  function addProcessToList(procFile){
+      var newButton = document.createElement("button");
+      newButton.textContent = procFile;
+      newButton.setAttribute(`id`,"proc_006");
+      newButton.setAttribute(`onclick`,"setActiveState(this)");
+      newButton.setAttribute(`type`,"button");
+      newButton.setAttribute(`class`,"procBtnGroup list-group-item list-group-item-action");
+          
+      document.querySelector("#procButtonList").prepend(newButton);
   }
 
   function setButtonActive(idForActive){
