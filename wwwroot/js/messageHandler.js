@@ -3,8 +3,9 @@ let today = new Date();
 let allLocalProcs = [];
 initMessageHandler();
 // read all the local procs from localStorage
+let procButtonCount;
 initLocalProcs();
-let procButtonCount = allLocalProcs.length ? allLocalProcs.length : 0;
+
 
 document.querySelector("#specFoldersBtn").addEventListener("click", () => {
   getSpecialFolders();
@@ -327,7 +328,11 @@ function initMessageHandler(){
           alert(response.Parameters);
           var result = JSON.parse(response.Parameters);
           if (result.doesExist){
-            addProcessToList(result.procFile)
+            var params = document.querySelector("#procParams").value;
+            var qsproc = new QSProc(result.procFile,params);
+            addProcessToList(qsproc);
+            allLocalProcs.push(qsproc);
+            saveQSProcsToLocalStorage();
             // --> We will start process later --> startProcess(result.procFile);
           }
           break;
@@ -351,13 +356,23 @@ function initMessageHandler(){
   }
 
   function initLocalProcs(){
-    allLocalProcs = localStorage.getItem(`allProcs`);
-    if (!allLocalProcs){allLocalProcs = [];}
+    allLocalProcs = JSON.parse(localStorage.getItem(`allProcs`));
+    // if there are no procs in localStorage it will be null
+    if (allLocalProcs == null){allLocalProcs = []; return;}
+    procButtonCount = 0; //allLocalProcs.length;// ? allLocalProcs.length : 0;
+    document.querySelector("#procButtonList").innerHTML = "";
+    allLocalProcs.forEach(p => {
+      addProcessToList(new QSProc(p.ExePath,p.Params));
+    });
   }
 
-  function addProcessToList(procFile){
+  function saveQSProcsToLocalStorage(){
+    localStorage.setItem("allProcs", JSON.stringify(allLocalProcs));
+  }
+  
+  function addProcessToList(qsproc){
       var newButton = document.createElement("button");
-      newButton.textContent = procFile;
+      newButton.textContent = qsproc.ExePath;
       newButton.setAttribute(`id`,`proc-${++procButtonCount}`);
       newButton.setAttribute(`onclick`,"setActiveState(this)");
       newButton.setAttribute(`type`,"button");
