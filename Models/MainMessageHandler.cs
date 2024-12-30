@@ -85,7 +85,18 @@ public class MainMessageHandler{
 
                 List<int> allPids = new();
                 bool isAdded = false;
-                HashSet<string> nameTrack = new ();
+                // is this the macOS, if so we need to capture
+                // every process bec they are named the same but point to differe
+                // exe files
+                bool isMacOS = OperatingSystem.IsMacOS();
+                Object nameTrack;
+                if (isMacOS){
+                    nameTrack = new List<string>();
+                    
+                }
+                else{
+                    nameTrack = new HashSet<string> ();
+                }
                 for (int idx = 0; idx < Program.allProcs.Count;idx++){
                     var name = Program.allProcs[idx].Name.ToLower();
                     if (String.IsNullOrEmpty(name)){
@@ -97,7 +108,15 @@ public class MainMessageHandler{
                             }
                         }
                     }
-                    isAdded = nameTrack.Add(name);
+                    if (isMacOS){
+                        // cast it as a list of string for macos
+                        ((List<string>)nameTrack).Add(name);
+                        isAdded = true;
+                    }
+                    else{
+                        isAdded = ((HashSet<string>)nameTrack).Add(name);
+                    }
+                    
                     // if isAdded, it means that the process name was successfully
                     // added to the hashset, which means it hasn't been added previously
                     // which means we want to add it to our list of pids
