@@ -85,22 +85,18 @@ public class MainMessageHandler{
 
                 List<int> allPids = new();
                 bool isAdded = false;
-                // is this the macOS, if so we need to capture
-                // every process bec they are named the same but point to differe
+                // Going to key off the filename in an attempt to only
+                // get unique processes.
+                // This is bec on MACOS they are named the same but point to different
                 // exe files
+                
+                HashSet<string> nameTrack = new();
                 bool isMacOS = OperatingSystem.IsMacOS();
-                Object nameTrack;
-                if (isMacOS){
-                    nameTrack = new List<string>();
-                    
-                }
-                else{
-                    nameTrack = new HashSet<string> ();
-                }
+                
                 for (int idx = 0; idx < Program.allProcs.Count;idx++){
                     var name = Program.allProcs[idx].Name.ToLower();
+                    var filename = Program.allProcs[idx].Filename;
                     if (String.IsNullOrEmpty(name)){
-                        var filename = Program.allProcs[idx].Filename;
                         if (!String.IsNullOrEmpty(filename)){
                             var beginIdx = filename.LastIndexOf(Path.DirectorySeparatorChar);
                             if (beginIdx > -1){
@@ -108,14 +104,9 @@ public class MainMessageHandler{
                             }
                         }
                     }
-                    if (isMacOS){
-                        // cast it as a list of string for macos
-                        ((List<string>)nameTrack).Add(name);
-                        isAdded = true;
-                    }
-                    else{
-                        isAdded = ((HashSet<string>)nameTrack).Add(name);
-                    }
+                
+                    isAdded = nameTrack.Add(filename);
+                
                     
                     // if isAdded, it means that the process name was successfully
                     // added to the hashset, which means it hasn't been added previously
