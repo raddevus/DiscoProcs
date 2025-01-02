@@ -377,8 +377,12 @@ function initMessageHandler(){
       newButton.setAttribute(`onclick`,"setActiveState(this)");
       newButton.setAttribute(`type`,"button");
       newButton.setAttribute(`class`,"procBtnGroup list-group-item list-group-item-action");
-          
+      newButton.setAttribute('data-bs-toggle',"tooltip");
+      newButton.setAttribute('data-bs-placement',"top");
+      newButton.setAttribute('data-bs-title',`params: ${qsproc.Params}`);
       document.querySelector("#procButtonList").prepend(newButton);
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   }
 
   function setButtonActive(idForActive){

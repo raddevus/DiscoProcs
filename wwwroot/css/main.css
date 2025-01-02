@@ -3,6 +3,12 @@ html, body {
     padding: 0;
 }
 
+/* RADDEVUS - 2025-01-02 overriding tooltip
+   style to left align text */
+.tooltip .tooltip-inner {
+    text-align: left;
+}
+
 /* RADDEVUS - 2024-12-18 overriding the 
 bootstrap basic menu hover / focus colors */
 .dropdown-item:hover, .dropdown-item:focus {
