@@ -7,7 +7,7 @@ document.addEventListener("click", bodyClickHandler,false);
 document.querySelector("#procList").addEventListener('contextmenu', e => {
     if (e.shiftKey == false) {
       e.preventDefault();
-      drawContextMenu();
+      drawContextMenu("RADcontextMenu");
     }
 });
 
@@ -17,15 +17,14 @@ function onMouseMove(e)
 }
 
 
-function drawContextMenu()
+function drawContextMenu(menuClass)
 {
   isContextMenuDisplayed = true;
   console.log('drawContextMenu : ' + new Date())
-  //console.log($('.EScontextMenu').text());
-  document.querySelector('.RADcontextMenu').style.visibility = "visible";
-  document.querySelector('.RADcontextMenu').style.display = "block";
-  document.querySelector('.RADcontextMenu').style.top = `${mousePos.y + window.scrollY}px`;
-  document.querySelector('.RADcontextMenu').style.left = mousePos.x + "px";
+  document.querySelector(`.${menuClass}`).style.visibility = "visible";
+  document.querySelector(`.${menuClass}`).style.display = "block";
+  document.querySelector(`.${menuClass}`).style.top = `${mousePos.y + window.scrollY}px`;
+  document.querySelector(`.${menuClass}`).style.left = mousePos.x + "px";
 }
 
 function onContextMenuClick(e)
