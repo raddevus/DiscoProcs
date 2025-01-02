@@ -7,8 +7,15 @@ document.addEventListener("click", bodyClickHandler,false);
 document.querySelector("#procList").addEventListener('contextmenu', e => {
     if (e.shiftKey == false) {
       e.preventDefault();
-      drawContextMenu("RADcontextMenu");
+      drawContextMenu("procListMenu");
     }
+});
+
+document.querySelector("#procButtonList").addEventListener('contextmenu', e => {
+  if (e.shiftKey == false) {
+    e.preventDefault();
+    drawContextMenu("procButtonMenu");
+  }
 });
 
 function onMouseMove(e)
@@ -56,6 +63,14 @@ function onContextMenuClick(e)
         searchProcList();     
         break;
       }
+    case 'start_process':{
+      startProcess(currentProcess.exePath);
+      break;
+    }
+    case 'remove_process':{
+
+      break;
+    }
   }
 }
 
@@ -96,8 +111,11 @@ function bodyClickHandler()
 function hideContextMenu()
 {
   if (isContextMenuDisplayed) {
-      document.querySelector(".RADcontextMenu").style.visibility = "hidden";
-      document.querySelector(".RADcontextMenu").style.display = "none";
+      var allMenus = Array.from(document.querySelectorAll(".RADcontextMenu"));
+      allMenus.forEach(menu => {
+        menu.style.visibility = "hidden";
+        menu.style.display = "none";
+      });
       isContextMenuDisplayed = false;
     }
 }

@@ -1,6 +1,7 @@
 
 let today = new Date();
 let allLocalProcs = [];
+let currentProcess = {};
 initMessageHandler();
 // read all the local procs from localStorage
 let procButtonCount;
@@ -375,6 +376,7 @@ function initMessageHandler(){
       newButton.textContent = qsproc.ExePath;
       newButton.setAttribute(`id`,`proc-${++procButtonCount}`);
       newButton.setAttribute(`onclick`,"setActiveState(this)");
+      newButton.setAttribute(`onmouseover`,"captureProcDetails(this)");
       newButton.setAttribute(`type`,"button");
       newButton.setAttribute(`class`,"procBtnGroup list-group-item list-group-item-action");
       newButton.setAttribute('data-bs-toggle',"tooltip");
@@ -383,6 +385,14 @@ function initMessageHandler(){
       document.querySelector("#procButtonList").prepend(newButton);
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
       const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  }
+
+  function captureProcDetails(e){
+    currentProcess.exePath = document.querySelector(`#${e.id}`).textContent;
+    // The params are set on the data-bs-title attribute of the 
+    // proc button, but we don't want the first 9 (idx 8) chars
+    // because that's just the "header" text
+    currentProcess.params = document.querySelector(`#${e.id}`).getAttribute('data-bs-title').substring(8);
   }
 
   function setButtonActive(idForActive){

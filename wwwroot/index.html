@@ -13,13 +13,22 @@
 </head>
 <body>
 
-    <div class="RADcontextMenu card border border-primary">
+    <div class="procListMenu RADcontextMenu card border border-primary">
         <div class="card-body">
         <ul>
             <li onclick="onContextMenuClick(this)" id="save_procs" class="contextMenuItem">Save Selected Procs</li>
             <li onclick="onContextMenuClick(this)" id="kill_process" class="contextMenuItem">Kill Process</li>
             <li onclick="onContextMenuClick(this)" id="get_proc_info_byName" class="contextMenuItem">Get Proc History</li>
             <li onclick="onContextMenuClick(this)" id="find_proc_by_name" class="contextMenuItem">Find Proc By Name</li>
+        </ul>
+        </div>
+    </div>
+    <div class="procButtonMenu RADcontextMenu card border border-primary">
+        <div class="card-body">
+        <ul>
+            <li onclick="onContextMenuClick(this)" id="start_process" class="contextMenuItem">Start Process</li>
+            <hr>
+            <li onclick="onContextMenuClick(this)" id="remove_process" class="contextMenuItem">Remove Process</li>
         </ul>
         </div>
     </div>
