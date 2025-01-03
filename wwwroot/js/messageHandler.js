@@ -60,10 +60,10 @@ function checkIfProcFileExists(procPath){
     sendMessage(sMessage);
 }
 
-function startProcess(procPath){
+function startProcess(procDetails){
   let message = {}; // create basic object
     message.Command = "startProcess";
-    message.Parameters = procPath;
+    message.Parameters = procDetails;
     let sMessage = JSON.stringify(message);
     sendMessage(sMessage);
 }

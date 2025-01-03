@@ -64,7 +64,7 @@ function onContextMenuClick(e)
         break;
       }
     case 'start_process':{
-      startProcess(currentProcess.exePath);
+      startProcess(`${currentProcess.exePath},${currentProcess.params}`);
       break;
     }
     case 'remove_process':{

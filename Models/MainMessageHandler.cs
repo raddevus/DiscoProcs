@@ -189,9 +189,10 @@ public class MainMessageHandler{
                 break;
             }
             case "startProcess":{
-                var procFile = wm.Parameters.Trim();
+                var procFile = wm.AllParameters[0];
+                string localParams = wm.AllParameters.Length > 1 ? wm.AllParameters[1] : String.Empty;
                 EnvironmentService es = new();
-                var procId = es.StartProcess(procFile);
+                var procId = es.StartProcess(procFile,localParams);
                 wm.Parameters = JsonSerializer.Serialize(new{procId=procId});
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
