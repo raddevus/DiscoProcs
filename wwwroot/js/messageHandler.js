@@ -29,6 +29,11 @@ selector.addEventListener("change", () => {
   getProcDetails();
 });
 
+let startAllBtn = document.querySelector("#startAllBtn");
+startAllBtn.addEventListener("click", () => {
+    startAllProcesses();
+});
+
 document.querySelector("#saveProcPathBtn").addEventListener("click", () =>
   {
     addNewProc();
@@ -50,6 +55,15 @@ function addNewProc(){
   checkIfProcFileExists(procPath);
   // At this point processing gets pushed to the 
   // switch statement -- after the c# File.Exists() call is completed
+}
+
+function startAllProcesses(){
+  // get the list out of localStorage
+  var allProcs = JSON.parse(localStorage.getItem("allProcs"));
+  allProcs.forEach(p => {
+    var procDetails = `${p.ExePath},${p.Params}`;
+    startProcess(procDetails);
+  });
 }
 
 function checkIfProcFileExists(procPath){
@@ -345,7 +359,7 @@ function initMessageHandler(){
             alert("Couldn't start that process.");
             return;
           }
-          alert(`Started the new process. pid:  ${result.procId}`);
+          // alert(`Started the new process. pid:  ${result.procId}`);
           break;
         }
         default:{
