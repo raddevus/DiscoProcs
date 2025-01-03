@@ -78,7 +78,7 @@ h1, .h1 {
                     font-size:14px;
     }
 
-.RADcontextMenu ul{
+.RADcontextMenu ul, hr{
     /*width: 100%;  */
     list-style-type: none; 
     margin: 0px 0px 0px 0px;
