@@ -131,7 +131,14 @@ var allCommands = ["getCurrentDirectory",
   function getProcessModules(){
     let message = {}; // create basic object
     message.Command = "getProcessModules";
-    message.Parameters = document.querySelector("#procList").value;
+    // following line substrings out the pid header 
+    // and trims out the spaces to get the pid
+    let pid = Number(`${document.querySelector("#pid").innerHTML.substring(21).trim()}`);
+    if (Number.isNaN(pid)){
+      alert("Doesn't look like we can get a valid pid for that process.");
+      return;
+    }
+    message.Parameters = pid.toString();
     let sMessage = JSON.stringify(message);
     sendMessage(sMessage);
   }

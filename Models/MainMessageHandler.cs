@@ -47,7 +47,7 @@ public class MainMessageHandler{
             }
             case "getProcessModules":{
                 SystemInfo dpp = new();
-                wm.Parameters = string.Join(",",dpp.GetAllProcModules(wm.Parameters));
+                wm.Parameters = string.Join(",",dpp.GetAllProcModules(Convert.ToInt32(wm.AllParameters[0])));
                 window?.SendWebMessage(JsonSerializer.Serialize(wm));
                 break;
             }
