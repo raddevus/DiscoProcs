@@ -139,7 +139,7 @@ var allCommands = ["getCurrentDirectory",
     // sometimes we have a pid but no filename associated with process
     let exeFileName = document.querySelector("#pfile").innerHTML.substring(26).trim();
     if (Number.isNaN(pid) || exeFileName.length <= 1){
-      alert("Doesn't look like we can get a valid pid for that process.");
+      alert("We can't seem to get either, a valid pid, or an exe file for that process,\n so we can't get more details.");
       return;
     }
     message.Parameters = pid.toString();
