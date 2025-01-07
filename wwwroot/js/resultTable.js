@@ -114,7 +114,7 @@ const buildProcResultTable = function(dataRows){
         React.createElement("td",{id:`filename-${currentId}`}, dataRows[x].Filename),
         React.createElement("td",{id:`filedate-${currentId}`}, dataRows[x].FileDate),
         React.createElement("td",{id:`filehash-${currentId}`}, dataRows[x].FileHash),
-        React.createElement("td",{id:`filesize-${currentId}`}, dataRows[x].FileSize),
+        React.createElement("td",{id:`filesize-${currentId}`}, parseInt(dataRows[x].FileSize).toLocaleString() ),
         React.createElement("td",{id:`created-${currentId}`,width:"150px"},  dataRows[x].Created),
                 
             )
@@ -136,7 +136,7 @@ const buildProcModulesTable = function(dataRows){
         
         React.createElement("td",{id:`name-${currentId}`}, dataRows[x].moduleName),
         React.createElement("td",{id:`filename-${currentId}`}, dataRows[x].fileName),
-        React.createElement("td",{id:`filesize-${currentId}`}, dataRows[x].memorySize),
+        React.createElement("td",{id:`filesize-${currentId}`}, parseInt(dataRows[x].memorySize).toLocaleString()),
             )
        );
     }
