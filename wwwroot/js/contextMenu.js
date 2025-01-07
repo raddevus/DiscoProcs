@@ -55,6 +55,7 @@ function onContextMenuClick(e)
       }
     case 'get_proc_info_byName':
       {
+        clearResultInfo();
         getProcInfoByName();
         break;
       }

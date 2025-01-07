@@ -1,8 +1,9 @@
-function displayResultTable(dataRows, rootElement, targetFunc, headerName){
+function displayResultTable(dataRows, rootElement, targetFunc, headerName, titleText){
     console.log(`userTasks ${JSON.stringify(dataRows)}`);
     //initUserTaskTable();
     
-    
+    setTitleText(titleText);
+
     ReactDOM.render(
         // We are passing in just the tasks - not the outer object 
         // which includes the success property
@@ -140,6 +141,10 @@ const buildProcModulesTable = function(dataRows){
        );
     }
     return allItems.reverse();
+}
+
+function setTitleText(titleText){
+    document.querySelector("#resultTitle").textContent = titleText;
 }
 
 function hideWaitCursor(waitCursorId){

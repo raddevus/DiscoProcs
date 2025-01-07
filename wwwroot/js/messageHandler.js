@@ -9,10 +9,12 @@ initLocalProcs();
 
 
 document.querySelector("#specFoldersBtn").addEventListener("click", () => {
+  clearResultInfo();
   getSpecialFolders();
 });
 
 document.querySelector("#envVarsBtn").addEventListener("click", () => {
+  clearResultInfo();
   getEnvironmentVars();
 });
 
@@ -271,11 +273,12 @@ function initMessageHandler(){
         }
         case allCommands[4]:{
           var resultObject = JSON.parse(response.Parameters);
-          alert(resultObject.totalMemSize);
+          
+          document.querySelector("#resultInfo").textContent = `Total memory size for all loaded modules is: ${parseInt(resultObject.totalMemSize).toLocaleString()} bytes.`;
           var allProcModuleRows = resultObject.modules;
           rowCount = allProcModuleRows.length;
           setButtonActive("v-pills-system");
-          displayResultTable(allProcModuleRows, "#tableresults", buildProcModulesTable,"procModules");
+          displayResultTable(allProcModuleRows, "#tableresults", buildProcModulesTable,"procModules","Process Modules");
 
           
           break;
@@ -316,7 +319,7 @@ function initMessageHandler(){
           var allSnapshotRows = JSON.parse(response.Parameters);
           var rowCount = allSnapshotRows.length;
           setButtonActive("v-pills-system");
-          displayResultTable(allSnapshotRows, "#tableresults", buildProcResultTable,"history");
+          displayResultTable(allSnapshotRows, "#tableresults", buildProcResultTable,"history","Process History");
           break;
         }
         case allCommands[10]:{
@@ -335,7 +338,7 @@ function initMessageHandler(){
           console.log(response.Parameters);
           var rowCount = allSpecFolders.length;
           setButtonActive("v-pills-system");
-          displayResultTable(allSpecFolders, "#tableresults", buildSpecFoldersResultTable,"specialFolders");
+          displayResultTable(allSpecFolders, "#tableresults", buildSpecFoldersResultTable,"specialFolders", "Special Folders");
           break;
         }
         case allCommands[12]:{
@@ -343,7 +346,7 @@ function initMessageHandler(){
           console.log(response.Parameters);
           var rowCount = allEnvVars.length;
           setButtonActive("v-pills-system");
-          displayResultTable(allEnvVars, "#tableresults", buildEnvVarsResultTable,"envvars");
+          displayResultTable(allEnvVars, "#tableresults", buildEnvVarsResultTable,"envvars", "Environment Vars");
           break;
         }
         case allCommands[13]:{
@@ -435,6 +438,12 @@ function initMessageHandler(){
     document.querySelector("#pworkingset").innerHTML = `<strong>RAM</strong>: ${parseInt(allParams[5]).toLocaleString("en")} bytes used.`;
     document.querySelector("#phash").innerHTML = `<strong>SHA256 (exe file)</strong>: ${allParams[6]}`;
     
+  }
+
+  function clearResultInfo(){
+    // This item needs to be cleared when user traverses to another tab, 
+    // because we don't want non-related messages to be shown to user.
+    document.querySelector("#resultInfo").textContent = "";
   }
 
   Date.prototype.yyyymmdd = function(isDash=true) {
