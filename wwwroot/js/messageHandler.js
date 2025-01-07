@@ -134,7 +134,9 @@ var allCommands = ["getCurrentDirectory",
     // following line substrings out the pid header 
     // and trims out the spaces to get the pid
     let pid = Number(`${document.querySelector("#pid").innerHTML.substring(21).trim()}`);
-    if (Number.isNaN(pid)){
+    // sometimes we have a pid but no filename associated with process
+    let exeFileName = document.querySelector("#pfile").innerHTML.substring(26).trim();
+    if (Number.isNaN(pid) || exeFileName.length <= 1){
       alert("Doesn't look like we can get a valid pid for that process.");
       return;
     }
@@ -268,15 +270,13 @@ function initMessageHandler(){
           break;
         }
         case allCommands[4]:{
-          return;
-          var allProcs = response.Parameters.split(",");
-          allProcs.forEach (p => {
-            var pDetails = p.split(":");
+          var resultObject = JSON.parse(response.Parameters);
+          alert(resultObject.totalMemSize);
+          var allProcModuleRows = resultObject.modules;
+          rowCount = allProcModuleRows.length;
+          setButtonActive("v-pills-system");
+          displayResultTable(allProcModuleRows, "#tableresults", buildProcModulesTable,"procModules");
 
-            var localOption = new Option(`${pDetails[0]}               ${pDetails[1]}`, pDetails[0], false, true);
-		        document.querySelector('#procList').append(localOption);
-		        //$("#procNames").val("");
-          });
           
           break;
         }

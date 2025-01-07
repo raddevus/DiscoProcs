@@ -122,6 +122,26 @@ const buildProcResultTable = function(dataRows){
     return allItems.reverse();
 }
 
+const buildProcModulesTable = function(dataRows){
+
+    console.log(dataRows[0]);
+    
+     let allItems = [];
+
+    for (let x=0; x < dataRows.length;x++){
+
+        let currentId = x;
+        allItems.push( React.createElement("tr",{key:x, id:currentId},
+        
+        React.createElement("td",{id:`name-${currentId}`}, dataRows[x].moduleName),
+        React.createElement("td",{id:`filename-${currentId}`}, dataRows[x].fileName),
+        React.createElement("td",{id:`filesize-${currentId}`}, dataRows[x].memorySize),
+            )
+       );
+    }
+    return allItems.reverse();
+}
+
 function hideWaitCursor(waitCursorId){
     document.querySelector(waitCursorId).classList.add("k-hidden");
 }
