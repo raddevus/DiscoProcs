@@ -46,6 +46,14 @@ function getHeaders(headerName){
             ));
             break;
         }
+        case "procModules":{
+            allHeaders.push( React.createElement("tr",{key:headerCounter, id:headerCounter++},
+                React.createElement("td",{id:`module-name-${headerCounter}`}, "Module Name"),
+                React.createElement("td",{id:`filenameHdr-${headerCounter}`}, "File Name"),
+                React.createElement("td",{id:`mesize-${headerCounter}`}, "Memory Size (bytes)")
+            ));
+            break;
+        }
     }
     
     return allHeaders;
