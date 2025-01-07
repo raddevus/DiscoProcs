@@ -67,6 +67,10 @@ function onContextMenuClick(e)
       startProcess(`${currentProcess.exePath},${currentProcess.params}`);
       break;
     }
+    case 'get_proc_modules':{
+      getProcessModules();
+      break;
+    }
     case 'remove_process':{
 
       break;
