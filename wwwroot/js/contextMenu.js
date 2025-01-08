@@ -7,14 +7,14 @@ document.addEventListener("click", bodyClickHandler,false);
 document.querySelector("#procList").addEventListener('contextmenu', e => {
     if (e.shiftKey == false) {
       e.preventDefault();
-      drawContextMenu("procListMenu");
+      drawContextMenu("procListMenu",140);
     }
 });
 
 document.querySelector("#procButtonList").addEventListener('contextmenu', e => {
   if (e.shiftKey == false) {
     e.preventDefault();
-    drawContextMenu("procButtonMenu");
+    drawContextMenu("procButtonMenu",80);
   }
 });
 
@@ -24,7 +24,7 @@ function onMouseMove(e)
 }
 
 
-function drawContextMenu(menuClass)
+function drawContextMenu(menuClass,height)
 {
   isContextMenuDisplayed = true;
   console.log('drawContextMenu : ' + new Date())
@@ -32,6 +32,7 @@ function drawContextMenu(menuClass)
   document.querySelector(`.${menuClass}`).style.display = "block";
   document.querySelector(`.${menuClass}`).style.top = `${mousePos.y + window.scrollY}px`;
   document.querySelector(`.${menuClass}`).style.left = mousePos.x + "px";
+  document.querySelector(`.${menuClass}`).setAttribute('height',`${height}px`);
 }
 
 function onContextMenuClick(e)
