@@ -2,6 +2,7 @@
 let today = new Date();
 let allLocalProcs = [];
 let currentProcess = {};
+let resultAlertIsHidden = true;
 initMessageHandler();
 // read all the local procs from localStorage
 let procButtonCount;
@@ -444,6 +445,19 @@ function initMessageHandler(){
     // This item needs to be cleared when user traverses to another tab, 
     // because we don't want non-related messages to be shown to user.
     document.querySelector("#resultInfo").textContent = "";
+  }
+
+  function toggleResultAlert(){
+    if (resultAlertIsHidden){
+      document.querySelector("#resultAlert").classList.add("k-show");
+      document.querySelector("#resultAlert").classList.remove("k-hidden");
+    }
+    else{
+      document.querySelector("#resultAlert").classList.add("k-hidden");
+      document.querySelector("#resultAlert").classList.remove("k-show");
+
+    }
+    resultAlertIsHidden = !resultAlertIsHidden;
   }
 
   Date.prototype.yyyymmdd = function(isDash=true) {
