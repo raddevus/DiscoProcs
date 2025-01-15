@@ -26,25 +26,28 @@ document.querySelector("#v-pills-main-tab").addEventListener("click", () => {
 
 let selector = document.querySelector("#procList");
  selector.addEventListener("click", () => {
+  toggleResultAlert(false);
    getProcDetails();
  });
 
 selector.addEventListener("change", () => {
+  toggleResultAlert(false);
   getProcDetails();
 });
 
 document.querySelector("#alertClose").addEventListener("click", () => {
   toggleResultAlert(false);
-  
 });
 
 let startAllBtn = document.querySelector("#startAllBtn");
 startAllBtn.addEventListener("click", () => {
+    toggleResultAlert(false);
     startAllProcesses();
 });
 
 document.querySelector("#saveProcPathBtn").addEventListener("click", () =>
   {
+    toggleResultAlert(false);
     addNewProc();
   }
 );
@@ -59,7 +62,7 @@ function addNewProc(){
   toggleResultAlert(false);
   let procPath = document.querySelector("#procPath").value;
   if (procPath == ""){
-    document.querySelector("#resultMsg").textContent = "Please add a path to a process & try again.";
+    setResultMsg("Please add a path to a process & try again.");
     toggleResultAlert(true);
     return;
   }
@@ -148,7 +151,8 @@ var allCommands = ["getCurrentDirectory",
     // sometimes we have a pid but no filename associated with process
     let exeFileName = document.querySelector("#pfile").innerHTML.substring(26).trim();
     if (Number.isNaN(pid) || exeFileName.length <= 1){
-      alert("We can't seem to get either, a valid pid, or an exe file for that process,\n so we can't get more details.");
+      setResultMsg("We can't seem to get either, a valid pid, or an exe file for that process,\n so we can't get more details.");
+      toggleResultAlert(true);
       return;
     }
     message.Parameters = pid.toString();
@@ -160,7 +164,8 @@ var allCommands = ["getCurrentDirectory",
     let message = {}; // create basic object
     message.Command = "getProcFileName";
     message.Parameters = document.querySelector("#procList").value;
-    alert(`id: ${message.Parameters}`);
+    setResultMsg(`id: ${message.Parameters}`);
+    toggleResultAlert(true);
     let sMessage = JSON.stringify(message);
     sendMessage(sMessage);
   }
@@ -179,7 +184,8 @@ var allCommands = ["getCurrentDirectory",
     console.log(allProcIds.length);
     var s = "";
     allProcIds.forEach(id => {s+= `${id},`});
-    alert (s);
+    setResultMsg (s);
+    toggleResultAlert(true);
   }
 
   function saveProcSnapshot(){
@@ -257,13 +263,15 @@ function initMessageHandler(){
       response = JSON.parse(response);
       switch (response.Command){
         case allCommands[0]:{
-          alert(`current directory is: ${response.Parameters}`);
+          setResultMsg(`current directory is: ${response.Parameters}`);
+          toggleResultAlert(true);
           break;
         }
         case allCommands[1]:{
 
             dirSeparator = `${response.Parameters}`;
-            alert(`dirSeparator ${dirSeparator}`);
+            setResultMsg(`dirSeparator ${dirSeparator}`);
+            toggleResultAlert(true);
             break;
         }
         case allCommands[3]:{
@@ -294,8 +302,8 @@ function initMessageHandler(){
         }
         case allCommands[5]:{
           var procFileName = `${response.Parameters}`;
-          alert(`filename : ${procFileName}`);
-          
+          setResultMsg(`filename : ${procFileName}`);
+          toggleResultAlert(true);          
           break;
         }
         case allCommands[6]:{
@@ -309,19 +317,23 @@ function initMessageHandler(){
         case allCommands[7]:{
           var result = response.Parameters.split(",")[0].toLowerCase();
           if (result == "true"){
-            alert("Successfully saved snapshot.");
+            setResultMsg("Successfully saved snapshot.");
+            toggleResultAlert(true);
             return;
           }
-          alert("Couldn't save.");
+          setResultMsg("Couldn't save.");
+          toggleResultAlert(true);
           break;
         }
         case allCommands[8]:{
           var result = response.Parameters.split(",")[0].toLowerCase();
           if (result == "true"){
-            alert("Successfully saved selected procs.");
+            setResultMsg("Successfully saved selected procs.");
+            toggleResultAlert(true);
             return;
           }
-          alert("Couldn't save.");
+          setResultMsg("Couldn't save.");
+          toggleResultAlert(true);
             break;
           }
         case allCommands[9]:{
@@ -335,10 +347,12 @@ function initMessageHandler(){
           
           var result = response.Parameters.split(",")[0].toLowerCase();
           if (result == "true"){
-            alert("Successfully killed proc.");
+            setResultMsg("Successfully killed proc.");
+            toggleResultAlert(true);
           }
           else{
-            alert("Could not kill the proc.");
+            setResultMsg("Could not kill the proc.");
+            toggleResultAlert(true);
           }
           break;
         }
@@ -359,7 +373,8 @@ function initMessageHandler(){
           break;
         }
         case allCommands[13]:{
-          alert(response.Parameters);
+          setResultMsg(response.Parameters);
+          toggleResultAlert(true);
           var result = JSON.parse(response.Parameters);
           if (result.doesExist){
             var params = document.querySelector("#procParams").value;
@@ -375,14 +390,16 @@ function initMessageHandler(){
           var result = JSON.parse(response.Parameters);
           // -1 indicates that process couldn't be started
           if (result.procId == -1){
-            alert("Couldn't start that process.");
+            setResultMsg("Couldn't start that process.");
+            toggleResultAlert(true);
             return;
           }
           // alert(`Started the new process. pid:  ${result.procId}`);
           break;
         }
         default:{
-            alert(response.Parameters);
+            setResultMsg(response.Parameters);
+            toggleResultAlert(true);
             break;
         }
       }
@@ -455,6 +472,10 @@ function initMessageHandler(){
     // because we don't want non-related messages to be shown to user.
     document.querySelector("#resultInfo").textContent = "";
     toggleResultAlert(false);
+  }
+
+  function setResultMsg(msg){
+    document.querySelector("#resultMsg").textContent = msg;
   }
 
   function toggleResultAlert(shouldShow){
