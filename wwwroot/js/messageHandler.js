@@ -2,7 +2,7 @@
 let today = new Date();
 let allLocalProcs = [];
 let currentProcess = {};
-let resultAlertIsHidden = true;
+
 initMessageHandler();
 // read all the local procs from localStorage
 let procButtonCount;
@@ -33,7 +33,7 @@ selector.addEventListener("change", () => {
 });
 
 document.querySelector("#alertClose").addEventListener("click", () => {
-  toggleResultAlert();
+  toggleResultAlert(false);
   
 });
 
@@ -452,8 +452,8 @@ function initMessageHandler(){
     document.querySelector("#resultInfo").textContent = "";
   }
 
-  function toggleResultAlert(){
-    if (resultAlertIsHidden){
+  function toggleResultAlert(shouldShow){
+    if (shouldShow){
       document.querySelector("#resultAlert").classList.add("k-show");
       document.querySelector("#resultAlert").classList.remove("k-hidden");
     }
@@ -462,7 +462,6 @@ function initMessageHandler(){
       document.querySelector("#resultAlert").classList.remove("k-show");
 
     }
-    resultAlertIsHidden = !resultAlertIsHidden;
   }
 
   Date.prototype.yyyymmdd = function(isDash=true) {

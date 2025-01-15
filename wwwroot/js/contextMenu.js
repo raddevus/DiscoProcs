@@ -105,6 +105,8 @@ function searchProcList(){
         optionItem.scrollIntoView();
       }
     }
+    document.querySelector("#resultMsg").textContent = `Found ${foundCount} matching processes.`;
+    toggleResultAlert(true);
   }
 }
 
