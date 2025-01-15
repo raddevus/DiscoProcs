@@ -16,6 +16,10 @@ bootstrap basic menu hover / focus colors */
     background-color: green;
 }
 
+.alertButton{
+    float:right;
+}
+
 #procList option{
     padding-right:20px;
     background-color: lightblue;

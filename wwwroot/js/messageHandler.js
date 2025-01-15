@@ -32,6 +32,11 @@ selector.addEventListener("change", () => {
   getProcDetails();
 });
 
+document.querySelector("#alertClose").addEventListener("click", () => {
+  toggleResultAlert();
+  
+});
+
 let startAllBtn = document.querySelector("#startAllBtn");
 startAllBtn.addEventListener("click", () => {
     startAllProcesses();
