@@ -20,6 +20,7 @@ document.querySelector("#envVarsBtn").addEventListener("click", () => {
 });
 
 document.querySelector("#v-pills-main-tab").addEventListener("click", () => {
+  toggleResultAlert(false);
   scrollSelectedItemIntoView();
 });
 
@@ -55,9 +56,11 @@ function setActiveState(htmlEl){
 }
 
 function addNewProc(){
+  toggleResultAlert(false);
   let procPath = document.querySelector("#procPath").value;
   if (procPath == ""){
-    alert("Please add a path to a process & try again.");
+    document.querySelector("#resultMsg").textContent = "Please add a path to a process & try again.";
+    toggleResultAlert(true);
     return;
   }
   checkIfProcFileExists(procPath);
@@ -433,6 +436,7 @@ function initMessageHandler(){
     document.querySelector(`#${idForActive}`).classList.add('show');
     document.querySelector(`#${idForActive}`).classList.add('active');
     document.querySelector(`#${idForActive}-tab`).classList.add('active');
+    
   }
 
   function displayProcDetails(allParams){
@@ -450,6 +454,7 @@ function initMessageHandler(){
     // This item needs to be cleared when user traverses to another tab, 
     // because we don't want non-related messages to be shown to user.
     document.querySelector("#resultInfo").textContent = "";
+    toggleResultAlert(false);
   }
 
   function toggleResultAlert(shouldShow){
