@@ -123,7 +123,8 @@ var allCommands = ["getCurrentDirectory",
     "getSpecialFolders",
     "getEnvVars",
     "doesFileExist",
-    "startProcess"];
+    "startProcess",
+    "showNewProcs"];
 
   function getCurrentDir(){
     let message = {}; // create basic object
@@ -194,6 +195,14 @@ var allCommands = ["getCurrentDirectory",
     let message = {}; 
     message.Command = "saveProcSnapshot";
     message.Parameters = document.querySelector("#procList").value;
+    let sMessage = JSON.stringify(message);
+    sendMessage(sMessage);
+  }
+
+  function showNewProcs(){
+    let message = {}; 
+    message.Command = "showNewProcs";
+    message.Parameters = "null";
     let sMessage = JSON.stringify(message);
     sendMessage(sMessage);
   }
@@ -395,6 +404,11 @@ function initMessageHandler(){
             return;
           }
           // alert(`Started the new process. pid:  ${result.procId}`);
+          break;
+        }
+        case allCommands[15]:{
+          setResultMsg(response.Parameters);
+          toggleResultAlert(true);
           break;
         }
         default:{
