@@ -407,8 +407,9 @@ function initMessageHandler(){
           break;
         }
         case allCommands[15]:{
-          setResultMsg(response.Parameters);
-          toggleResultAlert(true);
+          var allNewProcs = JSON.parse(response.Parameters);
+          setButtonActive("v-pills-system");
+          displayResultTable(allNewProcs, "#tableresults", buildNewProcsTable,"newProcs","New Processes (not seen before)");
           break;
         }
         default:{

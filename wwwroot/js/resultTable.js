@@ -55,6 +55,14 @@ function getHeaders(headerName){
             ));
             break;
         }
+        case "newProcs":{
+            allHeaders.push( React.createElement("tr",{key:headerCounter, id:headerCounter++},
+                React.createElement("td",{id:`name-${headerCounter}`}, "Name"),
+                React.createElement("td",{id:`filenameHdr-${headerCounter}`}, "FileName"),
+                React.createElement("td",{id:`FileSizeHdr-${headerCounter}`}, "FileSize"),
+            ));
+            break;
+        }
     }
     
     return allHeaders;
@@ -137,6 +145,26 @@ const buildProcModulesTable = function(dataRows){
         React.createElement("td",{id:`name-${currentId}`}, dataRows[x].moduleName),
         React.createElement("td",{id:`filename-${currentId}`}, dataRows[x].fileName),
         React.createElement("td",{id:`filesize-${currentId}`}, parseInt(dataRows[x].memorySize).toLocaleString()),
+            )
+       );
+    }
+    return allItems.reverse();
+}
+
+const buildNewProcsTable = function(dataRows){
+
+    console.log(dataRows[0]);
+    
+     let allItems = [];
+
+    for (let x=0; x < dataRows.length;x++){
+
+        let currentId = x;
+        allItems.push( React.createElement("tr",{key:x, id:currentId},
+        
+            React.createElement("td",{id:`name-${currentId}`}, dataRows[x].Name),
+        React.createElement("td",{id:`filename-${currentId}`}, dataRows[x].Filename),
+        React.createElement("td",{id:`filesize-${currentId}`}, parseInt(dataRows[x].FileSize).toLocaleString()),
             )
        );
     }
