@@ -60,6 +60,7 @@ function getHeaders(headerName){
                 React.createElement("td",{id:`name-${headerCounter}`}, "Name"),
                 React.createElement("td",{id:`filenameHdr-${headerCounter}`}, "FileName"),
                 React.createElement("td",{id:`FileSizeHdr-${headerCounter}`}, "FileSize"),
+                React.createElement("td",{id:`FileHashHdr-${headerCounter}`}, "FileHash"),
             ));
             break;
         }
@@ -165,6 +166,7 @@ const buildNewProcsTable = function(dataRows){
             React.createElement("td",{id:`name-${currentId}`}, dataRows[x].Name),
         React.createElement("td",{id:`filename-${currentId}`}, dataRows[x].Filename),
         React.createElement("td",{id:`filesize-${currentId}`}, parseInt(dataRows[x].FileSize).toLocaleString()),
+        React.createElement("td",{id:`filehash-${currentId}`}, dataRows[x].FileHash),
             )
        );
     }
