@@ -408,6 +408,11 @@ function initMessageHandler(){
         }
         case allCommands[15]:{
           var allNewProcs = JSON.parse(response.Parameters);
+          
+          if (allNewProcs.length == 0){
+            document.querySelector("#resultInfo").textContent = "There were no new processes found.";
+            document.querySelector("#resultInfo").style.backgroundColor = "yellow";
+          }
           setButtonActive("v-pills-system");
           displayResultTable(allNewProcs, "#tableresults", buildNewProcsTable,"newProcs","New Processes (not seen before)");
           break;
