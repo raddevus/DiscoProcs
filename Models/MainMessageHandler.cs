@@ -1,4 +1,4 @@
-using PhotinoNET;
+using Photino.NET;
 using System.Text.Json;
 using NewLibre;
 using DiscoProcs;

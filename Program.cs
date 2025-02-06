@@ -1,5 +1,5 @@
 ﻿using NewLibre;
-using PhotinoNET;
+using Photino.NET;
 using System;
 using System.Drawing;
 using System.IO;
